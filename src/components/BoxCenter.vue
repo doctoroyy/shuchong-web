@@ -126,19 +126,19 @@ export default {
   background: #f5f5f5;
 }
 .box-center1 {
-  background: #fff;
+  background: #f5f5f5;
   width: 1020px;
   height: auto;
   margin: 20px auto 20px auto;
 }
 .box-center1 .el-aside {
-  background: #f7f7f7;
+  /* background: #f5f5f5; */
 }
 
 .box-center1 .el-row .el-col {
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  border: #f7f7f7 1px solid;
+  /* box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1); */
+  /* border-radius: 2px; */
+  outline: #e6e6e6 1px dotted;
   width: 100px;
   height: 60px;
   font-size: 16px;
@@ -157,6 +157,7 @@ export default {
 }
 .box-center2 .el-row .el-col {
   margin: 10px 16px;
+  outline: #e6e6e6 1px dotted;
 }
 .divider-box {
   display: block;
@@ -165,8 +166,9 @@ export default {
 }
 
 .box-center1 .el-main {
-  color: #333;
-  text-align: center;
+  /* border: #99a9bf 1px solid; */
+  margin-top: 60px;
+  background: #fff;
 }
 
 .box-center2 {
@@ -207,12 +209,12 @@ export default {
 
 
 .classify-list {
-  border: #f7f7f7 2px solid;
+  outline: #e6e6e6 1px dotted;
 }
 .classify-list i {
   font-size: 26px;
   line-height: 60px;
-  background: #f7f7f7;
+  /* background: #f7f7f7; */
 }
 .classify-list i span {
   font-size: 18px;
