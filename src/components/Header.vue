@@ -138,4 +138,16 @@ export default {
 .submit-btn {
   text-align: center;
 }
+.dialog {
+  /* margin: 100px auto 0 auto; */
+  text-align: center;
+  margin: auto;
+  /* vertical-align: middle; */
+  /* width: 400px; */
+  /* height: 400px; */
+  /* border: 2px #f5f5f5 solid; */
+  padding: 0px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
 </style>

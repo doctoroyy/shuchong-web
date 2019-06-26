@@ -2,13 +2,16 @@
   <div class="c-center">
     <el-container class="box-center1">
       <el-aside width="20%">
-        <el-row v-for="i in 5" :key="i">
-          <el-col :span="6" v-for="j in 2" :key="j">
-            <a href="#">
-              <el-tag type="primary">{{tags_name[(i - 1) * 2 + j-1]}}</el-tag>
-            </a>
-          </el-col>
-        </el-row>
+        <div class="classify-list">
+          <i class="el-icon-menu">
+            <span>作品分类</span>
+          </i>
+          <el-row v-for="i in 6" :key="i">
+            <el-col :span="6" v-for="j in 2" :key="j">
+              <a href="#">{{tags_name[(i - 1) * 2 + j-1]}}</a>
+            </el-col>
+          </el-row>
+        </div>
       </el-aside>
       <el-main>
         <el-carousel indicator-position="outside">
@@ -20,7 +23,7 @@
     </el-container>
     <div class="divider-box" style="background:#f5f5f5;">
       <el-divider class="divider">
-        <i class="el-icon-folder"> 全部小说</i>
+        <i class="el-icon-folder">全部小说</i>
       </el-divider>
     </div>
     <div class="box-center2">
@@ -133,8 +136,20 @@ export default {
 }
 
 .box-center1 .el-row .el-col {
-  margin: 20px 20px;
-  /* margin: 20px; */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  border: #f7f7f7 1px solid;
+  width: 100px;
+  height: 60px;
+  font-size: 16px;
+
+  /* border: red 1px solid; */
+  text-align: center;
+}
+.box-center1 .el-row .el-col a {
+  line-height: 60px;
+  text-decoration: none;
+  color: inherit;
 }
 .box-center2 {
   padding: 10px;
@@ -189,8 +204,19 @@ export default {
 .el-carousel__item:nth-child(2n + 1) {
   background-color: #d3dce6;
 }
-.el-divider__text {
-  background: #f5f5f5;
+
+
+.classify-list {
+  border: #f7f7f7 2px solid;
+}
+.classify-list i {
+  font-size: 26px;
+  line-height: 60px;
+  background: #f7f7f7;
+}
+.classify-list i span {
+  font-size: 18px;
+  padding: 10px;
 }
 </style>
 

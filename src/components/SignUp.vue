@@ -6,7 +6,7 @@
       <el-form-item label="用户名：">
         <el-input v-model="formSignUp.name" autocomplete="off" placeholder="至少包括6个字符"></el-input>
       </el-form-item>
-      <el-form-item label="邮箱：" >
+      <el-form-item label="邮箱：">
         <el-input v-model="formSignUp.email" autocomplete="off" placeholder="请输入正确的邮箱格式"></el-input>
       </el-form-item>
       <el-form-item label="密码：">
@@ -57,8 +57,11 @@ export default {
 </script>
 <style scoped>
 .form-wraper {
+  
+  margin: 100px auto 0 auto;
   text-align: center;
-  margin: auto;
+  /* margin: auto; */
+  /* vertical-align: middle; */
   width: 400px;
   height: 400px;
   border: 2px #f5f5f5 solid;
