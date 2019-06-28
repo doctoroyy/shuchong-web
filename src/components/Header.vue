@@ -29,7 +29,7 @@
             </el-form-item>
           </el-form>
         </el-dialog>
-        <router-link to="/sign-up">
+        <router-link :to="{name:'SignUp'}">
           <el-button type icon="el-icon-user">注册</el-button>
         </router-link>
       </div>
@@ -99,6 +99,8 @@ export default {
 .el-header {
   padding: 0;
   margin-top: 20px;
+  height: 120px;
+  width: 100%;
 }
 .top-head {
   display: block;

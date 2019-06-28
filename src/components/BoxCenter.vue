@@ -8,7 +8,9 @@
           </i>
           <el-row v-for="i in 6" :key="i">
             <el-col :span="6" v-for="j in 2" :key="j">
-              <a href="#">{{tags_name[(i - 1) * 2 + j-1]}}</a>
+              <router-link
+                :to="{ name: 'bookInfo', params: { id: (i - 1) * 2 + j }}"
+              >{{tags[(i - 1) * 2 + j-1]}}</router-link>
             </el-col>
           </el-row>
         </div>
@@ -23,21 +25,16 @@
     </el-container>
     <div class="divider-box" style="background:#f5f5f5;">
       <el-divider class="divider">
-        <i class="el-icon-folder">全部小说</i>
+        <i class="el-icon-folder">{{' '}}全部小说</i>
       </el-divider>
     </div>
     <div class="box-center2">
       <el-row>
-        <el-col :span="4" v-for="o in 5" :key="o">
+        <el-col :span="4" v-for="o in 10" :key="o">
           <el-card :body-style="{ padding: '0px' }">
             <img :src="storage_book[o-1].src" class="image">
-            <div style="padding: 8px;">
-              <span>
-                {{storage_book[o-1].name}} /
-                <a href="#">
-                  <el-tag type="info">作者：</el-tag>
-                </a>
-              </span>
+            <div class="cover-bottom">
+              <span>{{storage_book[o-1].name}}</span>
             </div>
           </el-card>
         </el-col>
@@ -51,7 +48,7 @@ export default {
   name: "box_center",
   data() {
     return {
-      tags_name: [
+      tags: [
         "玄幻",
         "奇幻",
         "武侠",
@@ -131,19 +128,13 @@ export default {
   height: auto;
   margin: 20px auto 20px auto;
 }
-.box-center1 .el-aside {
-  /* background: #f5f5f5; */
-}
 
 .box-center1 .el-row .el-col {
-  /* box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1); */
-  /* border-radius: 2px; */
   outline: #e6e6e6 1px dotted;
   width: 100px;
   height: 60px;
   font-size: 16px;
 
-  /* border: red 1px solid; */
   text-align: center;
 }
 .box-center1 .el-row .el-col a {
@@ -152,9 +143,27 @@ export default {
   color: inherit;
 }
 .box-center2 {
+  background: #fff;
+  width: 1020px;
+  margin: 20px auto 20px auto;
   padding: 10px;
   text-align: center;
 }
+.box-center2 .cover-bottom {
+  padding: 8px;
+  /* background: #e6e6e6; */
+  height: 30px;
+}
+.box-center2 .cover-bottom span {
+  display: inline-block;
+  font-size: 14px;
+}
+.box-center2 span a {
+  display: inline-block;
+
+  /* margin: auto; */
+}
+
 .box-center2 .el-row .el-col {
   margin: 10px 16px;
   outline: #e6e6e6 1px dotted;
@@ -166,15 +175,8 @@ export default {
 }
 
 .box-center1 .el-main {
-  /* border: #99a9bf 1px solid; */
   margin-top: 60px;
   background: #fff;
-}
-
-.box-center2 {
-  background: #fff;
-  width: 1020px;
-  margin: 20px auto 20px auto;
 }
 
 .bottom {
@@ -188,7 +190,7 @@ export default {
 }
 
 .image {
-  border-bottom: #f5f5f5 1px solid;
+  border-bottom: #e6e6e6 1px solid;
   width: 168px;
   height: 224px;
   display: block;
@@ -207,14 +209,16 @@ export default {
   background-color: #d3dce6;
 }
 
-
+.el-divider__text {
+  background: #f5f5f5;
+  font-size: 16px;
+}
 .classify-list {
   outline: #e6e6e6 1px dotted;
 }
 .classify-list i {
   font-size: 26px;
   line-height: 60px;
-  /* background: #f7f7f7; */
 }
 .classify-list i span {
   font-size: 18px;
