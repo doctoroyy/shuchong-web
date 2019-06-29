@@ -64,8 +64,9 @@ export default {
   /* vertical-align: middle; */
   width: 400px;
   height: 400px;
-  border: 2px #f5f5f5 solid;
+  
   padding: 20px;
+  border: 2px #f5f5f5 solid;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   border-radius: 10px;
 }

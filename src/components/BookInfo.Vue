@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Header/>
-    <p>{{tags}}</p>
+    <!-- <Header/> -->
+    <p>{{books[this.$route.params.id]}}</p>
   </div>
   
   
@@ -10,10 +10,11 @@
 <script>
 import Header from './Header'
 export default {
-  props:['tags'],
   name: "book_info",
   data() {
     return {
+      tags: this.$store.state.tags,
+      books: this.$store.state.books,
     };
   },
   components: {

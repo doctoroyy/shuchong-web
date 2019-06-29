@@ -9,7 +9,7 @@
           <el-row v-for="i in 6" :key="i">
             <el-col :span="6" v-for="j in 2" :key="j">
               <router-link
-                :to="{ name: 'bookInfo', params: { id: (i - 1) * 2 + j }}"
+                to="/"
               >{{tags[(i - 1) * 2 + j-1]}}</router-link>
             </el-col>
           </el-row>
@@ -31,12 +31,14 @@
     <div class="box-center2">
       <el-row>
         <el-col :span="4" v-for="o in 10" :key="o">
-          <el-card :body-style="{ padding: '0px' }">
-            <img :src="storage_book[o-1].src" class="image">
-            <div class="cover-bottom">
-              <span>{{storage_book[o-1].name}}</span>
-            </div>
-          </el-card>
+          <router-link :to="{name: 'bookInfo', params: { id: o-1 }}">
+            <el-card :body-style="{ padding: '0px' }">
+              <img :src="books[o-1].src" class="image" />
+              <div class="cover-bottom">
+                <span>{{books[o-1].name}}</span>
+              </div>
+            </el-card>
+          </router-link>
         </el-col>
       </el-row>
       <el-pagination background layout="prev, pager, next" :total="100"></el-pagination>
@@ -48,22 +50,7 @@ export default {
   name: "box_center",
   data() {
     return {
-      tags: [
-        "玄幻",
-        "奇幻",
-        "武侠",
-        "仙侠",
-        "都市",
-        "现实",
-        "军事",
-        "历史",
-        "游戏",
-        "体育",
-        "科幻",
-        "悬疑灵异",
-        "女生网",
-        "轻小说"
-      ],
+      tags: this.$store.state.tags,
       img_url: [
         "https://bossaudioandcomic-1252317822.file.myqcloud.com/activity/document/da505b7f0abfdd6fac6d8bdad81ddc03.jpg",
         "https://bossaudioandcomic-1252317822.file.myqcloud.com/activity/document/2b538ec521660989b692bd189066c767.jpg",
@@ -71,48 +58,7 @@ export default {
         "https://bossaudioandcomic-1252317822.file.myqcloud.com/activity/document/e4dfdb58b3f1d5d673b2e7fcc9ca9ee5.jpg",
         "https://bossaudioandcomic-1252317822.file.myqcloud.com/activity/document/f4a932942cc7d88713e649eee396471a.jpg"
       ],
-      storage_book: [
-        {
-          src: "https://www.xbiquge6.com/cover/78/78513/78513s.jpg",
-          name: "元尊"
-        },
-        {
-          src: "https://www.xbiquge6.com/cover/20/20331/20331s.jpg",
-          name: "万古神帝"
-        },
-        {
-          src: "https://www.xbiquge6.com/cover/9/9208/9208s.jpg",
-          name: "伏天氏"
-        },
-        {
-          src: "https://www.xbiquge6.com/cover/8/8109/8109s.jpg",
-          name: "帝霸"
-        },
-        {
-          src: "https://www.xbiquge6.com/cover/0/576/576s.jpg",
-          name: "无敌天下"
-        },
-        {
-          src: "https://www.xbiquge6.com/cover/34/34822/34822s.jpg",
-          name: "三寸人间"
-        },
-        {
-          src: "https://www.xbiquge6.com/cover/3/3482/3482s.jpg",
-          name: "俗人回档"
-        },
-        {
-          src: "https://www.xbiquge6.com/cover/76/76306/76306s.jpg",
-          name: "寒门枭士"
-        },
-        {
-          src: "https://www.xbiquge6.com/cover/20/20339/20339s.jpg",
-          name: "茅山捉鬼人"
-        },
-        {
-          src: "https://www.xbiquge6.com/cover/12/12267/12267s.jpg",
-          name: "重生之最强剑神"
-        }
-      ]
+      books: this.$store.state.books
     };
   }
 };
@@ -137,7 +83,14 @@ export default {
 
   text-align: center;
 }
+.box-center1 .el-row .el-col:hover {
+  background: #c6c6c6;
+}
+
 .box-center1 .el-row .el-col a {
+  display: block;
+  width: 100%;
+  height: 100%;
   line-height: 60px;
   text-decoration: none;
   color: inherit;
