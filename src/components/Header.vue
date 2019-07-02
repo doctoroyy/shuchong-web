@@ -47,13 +47,13 @@
         <el-menu-item index="1">
           <em>首页</em>
         </el-menu-item>
-        <el-menu-item index="2">
+        <!-- <el-menu-item index="2">
           <em>书架</em>
-        </el-menu-item>
-        <el-menu-item index="3">
+        </el-menu-item> -->
+        <el-menu-item index="2">
           <em>关于</em>
         </el-menu-item>
-        <el-menu-item index="4">
+        <el-menu-item index="3">
           <em>个人中心</em>
         </el-menu-item>
       </el-menu>

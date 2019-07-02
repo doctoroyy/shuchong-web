@@ -20,7 +20,7 @@ export default new Router({
       name: 'bookInfo',
       component: BookInfo
     },
-    {path: '/sign-up.html',  name: 'SignUp', component: SignUp}
+    { path: '/sign-up.html', name: 'SignUp', component: SignUp }
   ],
   mode: "history"
 })

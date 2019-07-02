@@ -1,7 +1,7 @@
 <template>
   <el-container>
-    <Header/>
-    <box_center/>
+    <Header />
+    <box_center />
     <el-footer>
       <div class="copy-right">
         <p>
@@ -12,26 +12,24 @@
   </el-container>
 </template>
 <script>
-import box_center from './BoxCenter'
-import Header from './Header'
+import box_center from "./BoxCenter";
+import Header from "./Header";
 export default {
-  
   name: "Home",
   data() {
-    return {
-      
-    };
+    return {};
   },
   components: {
-    box_center, Header
-  }
+    box_center,
+    Header
+  },
+  
+  
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-
 .el-footer {
   width: 100%;
   background: #f5f5f5;

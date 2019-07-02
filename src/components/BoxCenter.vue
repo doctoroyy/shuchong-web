@@ -1,5 +1,6 @@
 <template>
   <div class="c-center">
+   <!-- <h1>{{books[0]['cover']}}</h1> -->
     <el-container class="box-center1">
       <el-aside width="20%">
         <div class="classify-list">
@@ -30,12 +31,12 @@
     </div>
     <div class="box-center2">
       <el-row>
-        <el-col :span="4" v-for="o in 10" :key="o">
-          <router-link :to="{name: 'bookInfo', params: { id: o-1 }}">
+        <el-col :span="4" v-for="book in books" :key="book.id">
+          <router-link :to="{name: 'bookInfo', params: { id: book.id }}">
             <el-card :body-style="{ padding: '0px' }">
-              <img :src="books[o-1].src" class="image" />
+              <img :src="book['cover']" class="image" />
               <div class="cover-bottom">
-                <span>{{books[o-1].name}}</span>
+                <span>{{book['author']}}</span>
               </div>
             </el-card>
           </router-link>
@@ -50,7 +51,7 @@ export default {
   name: "box_center",
   data() {
     return {
-      tags: this.$store.state.tags,
+      tags: this.$store.getters.getTags,
       img_url: [
         "https://bossaudioandcomic-1252317822.file.myqcloud.com/activity/document/da505b7f0abfdd6fac6d8bdad81ddc03.jpg",
         "https://bossaudioandcomic-1252317822.file.myqcloud.com/activity/document/2b538ec521660989b692bd189066c767.jpg",
@@ -58,9 +59,21 @@ export default {
         "https://bossaudioandcomic-1252317822.file.myqcloud.com/activity/document/e4dfdb58b3f1d5d673b2e7fcc9ca9ee5.jpg",
         "https://bossaudioandcomic-1252317822.file.myqcloud.com/activity/document/f4a932942cc7d88713e649eee396471a.jpg"
       ],
-      books: this.$store.state.books
+      books: '',
     };
-  }
+  },
+  beforeCreate: function() {
+    this.$axios
+        .get("http://doctoroyy.cf:8000/getAll")
+        .then(response => {
+          this.books =  response.data;
+        })
+        .catch(response => {
+          console.log(response);
+        });
+  },
+  
+  
 };
 </script>
 <style scoped>
@@ -96,6 +109,7 @@ export default {
   color: inherit;
 }
 .box-center2 {
+  /* height: 640px; */
   background: #fff;
   width: 1020px;
   margin: 20px auto 20px auto;
