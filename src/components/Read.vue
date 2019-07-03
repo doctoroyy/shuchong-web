@@ -2,11 +2,11 @@
   <div class="container">
     <div class="content-read">
       <div class="chapter-control">
-        <a class="prev" v-bind:href="(parseInt(this.$route.params.chapterno) - 1)">上一章</a>
+        <router-link class="prev" :to="{name:'ChapterDetail', params:{id:this.$route.params.id, chapterno:parseInt(this.$route.params.chapterno) - 1}}">上一章</router-link>
         <span></span>
-        <a href="./">目录</a>
+        <router-link to="./">目录</router-link>
         <span></span>
-        <a class="next" v-bind:href="(parseInt(this.$route.params.chapterno) + 1)">下一章</a>
+        <router-link class="next" :to="{name:'ChapterDetail', params:{id:this.$route.params.id, chapterno:parseInt(this.$route.params.chapterno) + 1}}">下一章</router-link>
       </div>
 
       <el-card class="content-wrap">
@@ -19,11 +19,11 @@
       </el-card>
 
       <div class="chapter-control">
-        <a class="prev" v-bind:href="(parseInt(this.$route.params.chapterno) - 1)">上一章</a>
+        <router-link class="prev" :to="{name:'ChapterDetail', params:{id:this.$route.params.id, chapterno:parseInt(this.$route.params.chapterno) - 1}}">上一章</router-link>
         <span></span>
-        <a href="./">目录</a>
+        <router-link to="./">目录</router-link>
         <span></span>
-        <a class="next" v-bind:href="(parseInt(this.$route.params.chapterno) + 1)">下一章</a>
+        <router-link class="next" :to="{name:'ChapterDetail', params:{id:this.$route.params.id, chapterno:parseInt(this.$route.params.chapterno) + 1}}">下一章</router-link>
       </div>
     </div>
   </div>
@@ -35,17 +35,22 @@ export default {
   data() {
     return {
       context: "",
-      next: parseInt(this.$route.params.chapterno) + 1
+      // next: parseInt(this.$route.params.chapterno) + 1
     };
   },
   computed: {},
-  created: function() {
+  updated:function() {
+    
+  },
+
+  mounted: function() {
+    console.log('挂载成功！');
     let url =
       "https://api.doctoroyy.cf/book/" +
       this.$route.params.id +
       "/" +
       this.$route.params.chapterno;
-    if (sessionStorage.getItem(url) !== null) {
+    if (localStorage.getItem(url) !== null) {
       // console.log("使用缓存！");
       let data = JSON.parse(sessionStorage.getItem(url));
       // console.log(data);
@@ -81,10 +86,66 @@ export default {
       this.$axios
         .get(url2)
         .then(response => {
-          if (sessionStorage.getItem(url2) === null) {
+          if (localStorage.getItem(url2) === null) {
             // console.log(typeof response.data);
             // console.log(response.data);
-            sessionStorage.setItem(url2, JSON.stringify(response.data));
+            localStorage.setItem(url2, JSON.stringify(response.data));
+          }
+          // this.context = response.data;
+        })
+        .catch(response => {
+          console.log(response);
+        });
+    }
+  },
+
+  beforeUpdate: function() {
+    console.log('触发更新！');
+    let url =
+      "https://api.doctoroyy.cf/book/" +
+      this.$route.params.id +
+      "/" +
+      this.$route.params.chapterno;
+    if (localStorage.getItem(url) !== null) {
+      // console.log("使用缓存！");
+      let data = JSON.parse(localStorage.getItem(url));
+      // console.log(data);
+      this.context = data;
+    } else {
+      this.$axios
+        .get(url)
+        .then(response => {
+          if (localStorage.getItem(url) === null) {
+            // console.log(typeof response.data);
+            // console.log(response.data);
+            localStorage.setItem(url, JSON.stringify(response.data));
+          }
+          this.context = response.data;
+        })
+        .catch(response => {
+          console.log(response);
+        });
+    }
+    //预加载下一章
+    let url2 =
+      "https://api.doctoroyy.cf/book/" +
+      this.$route.params.id +
+      "/" +
+      (parseInt(this.$route.params.chapterno) + 1);
+
+    if (localStorage.getItem(url2) !== null) {
+      // console.log("使用缓存！");
+      let data = JSON.parse(localStorage.getItem(url2));
+      // console.log(data);
+      // this.context = data;
+    } else {
+      this.$axios
+        .get(url2)
+        .then(response => {
+          if (localStorage.getItem(url2) === null) {
+            // console.log(typeof response.data);
+            // console.log(response.data);
+            localStorage.setItem(url2, JSON.stringify(response.data));
           }
           // this.context = response.data;
         })
