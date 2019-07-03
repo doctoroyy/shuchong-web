@@ -1,11 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import HelloWorld from '@/components/HelloWorld'
-import Home from '@/components/Home'
-import BookInfo from '@/components/BookInfo'
-import SignUp from '@/components/SignUp'
 
-import Read from '@/components/Read'
 
 
 Vue.use(Router)
@@ -15,15 +10,30 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      // component: Home,
+      component: resolve => require.ensure([], () => resolve(require('@/components/Home')), 'Home')
     },
     {
       path: '/book/:id',
       name: 'bookInfo',
-      component: BookInfo
+      component: resolve => require.ensure([], () => resolve(require('@/components/BookInfo')), 'BookInfo')
+
+      // component: BookInfo
     },
-    { path: '/sign-up.html', name: 'SignUp', component: SignUp },
-    {path: '/book/:id/:chapterno', name: 'ChapterDetail', component: Read}
+    {
+      path: '/sign-up.html',
+      name: 'SignUp',
+      // component: SignUp
+      component: resolve => require.ensure([], () => resolve(require('@/components/SignUp')), 'SignUp')
+
+    },
+    {
+      path: '/book/:id/:chapterno',
+      name: 'ChapterDetail',
+      // component: Read
+      component: resolve => require.ensure([], () => resolve(require('@/components/Read')), 'Read')
+
+    }
   ],
   mode: "history"
 })
