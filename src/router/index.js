@@ -5,6 +5,8 @@ import Home from '@/components/Home'
 import BookInfo from '@/components/BookInfo'
 import SignUp from '@/components/SignUp'
 
+import Read from '@/components/Read'
+
 
 Vue.use(Router)
 
@@ -20,7 +22,8 @@ export default new Router({
       name: 'bookInfo',
       component: BookInfo
     },
-    { path: '/sign-up.html', name: 'SignUp', component: SignUp }
+    { path: '/sign-up.html', name: 'SignUp', component: SignUp },
+    {path: '/book/:id/:chapterno', name: 'ChapterDetail', component: Read}
   ],
   mode: "history"
 })

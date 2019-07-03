@@ -1,6 +1,6 @@
 <template>
   <div class="c-center">
-   <!-- <h1>{{books[0]['cover']}}</h1> -->
+   <!-- <h1>{{}}</h1> -->
     <el-container class="box-center1">
       <el-aside width="20%">
         <div class="classify-list">
@@ -30,11 +30,11 @@
       </el-divider>
     </div>
     <div class="box-center2">
-      <el-row>
-        <el-col :span="4" v-for="book in books" :key="book.id">
+      <el-row class="el-row-wrap">
+        <el-col :span="4" v-for="book in this.$store.state.books" :key="book.id">
           <router-link :to="{name: 'bookInfo', params: { id: book.id }}">
             <el-card :body-style="{ padding: '0px' }">
-              <img :src="book['cover']" class="image" />
+              <img :src="book.cover" class="image" />
               <div class="cover-bottom">
                 <span>{{book['author']}}</span>
               </div>
@@ -59,18 +59,20 @@ export default {
         "https://bossaudioandcomic-1252317822.file.myqcloud.com/activity/document/e4dfdb58b3f1d5d673b2e7fcc9ca9ee5.jpg",
         "https://bossaudioandcomic-1252317822.file.myqcloud.com/activity/document/f4a932942cc7d88713e649eee396471a.jpg"
       ],
-      books: '',
+      books: this.$store.state.books,
     };
   },
-  beforeCreate: function() {
-    this.$axios
-        .get("http://doctoroyy.cf:8000/getAll")
-        .then(response => {
-          this.books =  response.data;
-        })
-        .catch(response => {
-          console.log(response);
-        });
+  created: function() {
+
+    this.$store.dispatch('get_books');
+    // this.$axios
+    //     .get("https://api.doctoroyy.cf/getAll")
+    //     .then(response => {
+    //       this.books =  response.data;
+    //     })
+    //     .catch(response => {
+    //       console.log(response);
+    //     });
   },
   
   
@@ -190,6 +192,11 @@ export default {
 .classify-list i span {
   font-size: 18px;
   padding: 10px;
+}
+
+.el-row-wrap {
+  height: 586px;
+  /* border: 1px red solid; */
 }
 </style>
 
