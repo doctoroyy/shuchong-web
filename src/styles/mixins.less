@@ -1,0 +1,33 @@
+.rem(@px) {
+  @res: @px / @font-size * 1rem;
+}
+
+.vw(@px) {
+  @res: @px / @view-height * 100vw;
+}
+
+.btn-style {
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #dcdfe6;
+  // border-top-right-radius: 0;
+  color: #606266;
+  -webkit-appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  outline: 0;
+  margin: 0;
+  transition: 0.1s;
+  // font-weight: 500;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  padding: 12px 20px;
+  font-size: 14px;
+  border-radius: @radius;
+}
+.base-hover {
+  background: rgba(0, 0, 0, 0.03);
+}
