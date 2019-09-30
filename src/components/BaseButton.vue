@@ -1,36 +1,38 @@
 <template>
-  <div
-    @click="handleClick"
-    class="btn-wrap">
-    <button :class="['iconfont', 'icon-' + icon]">{{ name }}</button>
-  </div> 
+  <div class="btn-wrap">
+    <button
+      @click="handleClick"
+      :class="['iconfont', 'icon-' + icon]">{{ name }}</button>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'BaseButton',
+  name: "BaseButton",
   props: {
-    handelClick: {
-      type: Function,
-      default: () => {},
-    },
     name: {
       type: String,
-      default: '',
+      default: ""
     },
     icon: {
       type: String,
       default: ""
+    },
+    handleClick: {
+      type: Function,
+      default: () => {}
     }
   },
-  data: {
-    
+  data() {
+    return {
+
+    }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>
-@import '../styles/base.less';
+@import "../styles/mixins.less";
 .btn-wrap {
   button {
     .btn-style();

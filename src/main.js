@@ -1,12 +1,16 @@
 import Vue from 'vue'
-import index from './pages'
+import App from './views/App.vue'
+import router from './router'
+import store from './store'
 import axios from 'axios'
 
+axios.defaults.baseURL = 'https://api.doctoroyy.xx'
 Vue.prototype.$axios = axios
-axios.baseUrl = 'https://localhost:8000'
 
 Vue.config.productionTip = false
 
 new Vue({
-  render: h => h(index),
+  router,
+  store,
+  render: h => h(App)
 }).$mount('#app')

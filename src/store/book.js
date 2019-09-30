@@ -1,5 +1,6 @@
 import { book as bookApi } from '../api/index'
 import axios from 'axios'
+
 const state = {
 	bookList: [],
 	booksInfo: [],
@@ -23,6 +24,13 @@ const actions = {
 		return axios.get(bookApi.getBookList).then((res) => {
 			commit('setBookList', res);
 			return res.data;
+		});
+	},
+	searchBook(_, payload) {
+		return axios.post(bookApi.searchBook, {
+			keyword: payload
+		}).then(res => {
+			return res;
 		});
 	},
 	fetchBookCatalog(_, payload) {
