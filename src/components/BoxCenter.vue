@@ -1,7 +1,10 @@
 <template>
-  <div class="c-center">
+  <div
+    class="c-center"
+    >
    <!-- <h1>{{}}</h1> -->
-    <el-container class="box-center1">
+    <el-container
+      class="box-center1">
       <el-aside width="20%">
         <div class="classify-list">
           <i class="el-icon-menu">
@@ -11,7 +14,7 @@
             <el-col :span="6" v-for="j in 2" :key="j">
               <router-link
                 to="/"
-              >{{tags[(i - 1) * 2 + j-1]}}</router-link>
+              >{{tags[(i - 1) * 2 + j - 1]}}</router-link>
             </el-col>
           </el-row>
         </div>
@@ -31,27 +34,38 @@
     </div>
     <div class="box-center2">
       <el-row class="el-row-wrap">
-        <el-col :span="4" v-for="book in this.$store.state.books" :key="book.id">
+        <el-col :span="4" v-for="book in this.books.data" :key="book.id">
           <router-link :to="{name: 'bookInfo', params: { id: book.id }}">
             <el-card :body-style="{ padding: '0px' }">
-              <img :src="book.cover" class="image" />
+              <img :src="book.imgSrc" class="image" />
               <div class="cover-bottom">
-                <span>{{book['author']}}</span>
+                <span>{{book.author}}</span>
               </div>
             </el-card>
           </router-link>
         </el-col>
       </el-row>
-      <el-pagination background layout="prev, pager, next" :total="100"></el-pagination>
     </div>
   </div>
 </template>
 <script>
+
+
 export default {
   name: "box_center",
+  props: {
+    books: {
+      type: Array,
+      default: () => [],
+    },
+    tags: {
+      type: Array,
+      default: () => [],
+    }
+  },
+
   data() {
     return {
-      tags: this.$store.getters.getTags,
       img_url: [
         "https://bossaudioandcomic-1252317822.file.myqcloud.com/activity/document/da505b7f0abfdd6fac6d8bdad81ddc03.jpg",
         "https://bossaudioandcomic-1252317822.file.myqcloud.com/activity/document/2b538ec521660989b692bd189066c767.jpg",
@@ -59,27 +73,16 @@ export default {
         "https://bossaudioandcomic-1252317822.file.myqcloud.com/activity/document/e4dfdb58b3f1d5d673b2e7fcc9ca9ee5.jpg",
         "https://bossaudioandcomic-1252317822.file.myqcloud.com/activity/document/f4a932942cc7d88713e649eee396471a.jpg"
       ],
-      books: this.$store.state.books,
-    };
-  },
-  created: function() {
-
-    this.$store.dispatch('get_books');
-    // this.$axios
-    //     .get("https://api.doctoroyy.cf/getAll")
-    //     .then(response => {
-    //       this.books =  response.data;
-    //     })
-    //     .catch(response => {
-    //       console.log(response);
-    //     });
-  },
+    }
+  }
   
   
 };
 </script>
 <style scoped>
 .c-center {
+  /* border: 10px solid red; */
+  min-height: 600px;
   width: 100%;
   background: #f5f5f5;
 }
@@ -111,7 +114,7 @@ export default {
   color: inherit;
 }
 .box-center2 {
-  /* height: 640px; */
+  min-height: 640px;
   background: #fff;
   width: 1020px;
   margin: 20px auto 20px auto;
@@ -195,7 +198,7 @@ export default {
 }
 
 .el-row-wrap {
-  height: 586px;
+  /* height: 586px; */
   /* border: 1px red solid; */
 }
 </style>

@@ -1,7 +1,10 @@
 <template>
   <el-container>
     <Header />
-    <box_center />
+    <box_center
+      :books='getBookList'
+      :tags='getTags'
+    />
     <el-footer>
       <div class="copy-right">
         <p>
@@ -14,17 +17,40 @@
 <script>
 import box_center from "./BoxCenter";
 import Header from "./Header";
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   name: "Home",
-  data() {
-    return {};
-  },
   components: {
     box_center,
-    Header
+    Header,
   },
   
-  
+  data() {
+    return {
+      page: 1,
+      pageSize: 100,
+      // loading: null,
+    };
+  },
+  async mounted() {
+    // this.loading = true;
+    await this.fetchBookList({page: this.page, pageSize: this.pageSize});
+    // this.loading = false;
+  },
+
+  methods: {
+    ...mapActions([
+      'fetchBookList',
+    ]),
+  },
+
+  computed: {
+    ...mapGetters([
+      'getTags',
+      'getBookList',
+    ]),
+  },
 };
 </script>
 

@@ -1,13 +1,18 @@
 <template>
-  <div>
+  <div
+    class="catalogInfo"
+    >
     <!-- <button @click="get">加载</button> -->
     <!-- <p>{{this.book}}</p> -->
     <Header />
-
-    <el-card class="wrap">
-      <el-container>
+    <el-card
+      v-loading="loading"
+      class="wrap">
+      <el-container
+        v-loading="loading"
+      >
         <el-aside width="200px">
-          <el-image :src="book['cover']">
+          <el-image :src="book.imgSrc">
             <div slot="error" class="image-slot">
               <i class="el-icon-picture-outline"></i>
             </div>
@@ -15,30 +20,31 @@
         </el-aside>
         <el-main>
           <el-tag>
-            <h1>{{book['name']}}</h1>
+            <h1>{{book.name}}</h1>
           </el-tag>
           <transition name="el-fade-in-linear">
-            <el-tag>作者: {{book['author']}}</el-tag>
+            <el-tag>作者: {{book.author}}</el-tag>
           </transition>
           <transition name="el-fade-in-linear">
-            <el-card class="description">{{book['info']}}</el-card>
+            <el-card class="description">{{book.description}}</el-card>
           </transition>
         </el-main>
       </el-container>
-    </el-card>
-    <!-- <p>{{tableData}}</p> -->
+    </el-card> 
     <el-card class="catalog">
       <el-tag>
         <h1>目录</h1>
       </el-tag>
       <el-row :gutter="0">
-        <el-col :span="8" v-for="chapter in chapters" :key="chapter.chapter_name">
-          <el-card class="grid-content">
-            <router-link
-              class="router-link"
-              :to="{name: 'ChapterDetail', params: { id: book_id, chapterno: chapters.indexOf(chapter) + 1}}"
-            >{{chapter.chapter_name}}</router-link>
-          </el-card>
+        <el-col :span="8" v-for="chapter in chapters" :key="chapter.name">
+          <div
+            class="box"
+            @click="handleClick(chapter)">
+            <el-card
+              class="grid-content">
+              <div class="router-link">{{chapter.name}}</div>
+            </el-card>
+          </div>
         </el-col>
       </el-row>
     </el-card>
@@ -47,51 +53,52 @@
 
 <script>
 import Header from "./Header";
+import { mapActions } from 'vuex';
+
 export default {
   name: "book_info",
   data() {
     return {
       // tags: this.$store.state.tags,
-      book: "",
-      chapters: "",
-      book_id: this.$route.params.id
+      book: null,
+      chapters: null,
+      // book_id: this.$route.params.id
+      loading: true,
     };
   },
   components: {
     Header
   },
-  methods: {},
-  created: function() {
-    let url = "https://api.doctoroyy.cf/catalogtojson/" + this.$route.params.id;
-    if (sessionStorage.getItem(url) !== null) {
-      // console.log("使用缓存！");
-      let data = JSON.parse(sessionStorage.getItem(url));
-      // console.log(data);
-      this.book = data;
-      this.chapters = this.book["chapters"];
-    } else {
-      // console.log('使用网络请求！');
-      this.$axios
-        .get(url)
-        .then(response => {
-          if (sessionStorage.getItem(url) === null) {
-            // console.log(typeof response.data);
-            // console.log(response.data);
+  methods: {
+    ...mapActions([
+      'fetchBookCatalog',
+    ]),
 
-            sessionStorage.setItem(url, JSON.stringify(response.data));
-          }
-
-          this.book = response.data;
-          this.chapters = this.book["chapters"];
-        })
-        .catch(response => {
-          console.log(response);
-        });
+    handleClick({novel_id_id, no}) {
+      this.$router.push({
+        name: 'ChapterDetail',
+        params: {
+          id: novel_id_id,
+          chapterno: no,
+        }
+      })
     }
+  },
+
+  async mounted() {
+    const id = this.$route.params.id;
+    const res = await this.fetchBookCatalog(id);
+    this.loading = false;
+    this.chapters = res.data.chapters;
+    this.book = res.data.bookInfo;
+    // alert(JSON.stringify(res))
   }
 };
 </script>
 <style scoped>
+.catalogInfo {
+  min-height: 900px;
+}
 .wrap {
   width: 1020px;
   margin: auto;
