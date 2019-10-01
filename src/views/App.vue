@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-    <router-view />
+    <!-- <keep-alive> -->
+      <router-view/>
+    <!-- </keep-alive> -->
+    <!-- <Footer /> -->
   </div>
 </template>
 
 <style lang="less">
-@import '../styles/base.less';
-
+@import "../styles/base.less";
 </style>

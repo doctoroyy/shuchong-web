@@ -20,9 +20,9 @@ const mutations = {
 }
 
 const actions = {
-	fetchBookList({ commit }) {
-		return axios.get(bookApi.getBookList).then((res) => {
-			commit('setBookList', res);
+	fetchBookList({ commit }, payload) {
+		return axios.post(bookApi.getBookList, payload).then((res) => {
+			commit('setBookList', res.data);
 			return res.data;
 		});
 	},
@@ -33,14 +33,14 @@ const actions = {
 			return res;
 		});
 	},
-	fetchBookCatalog(_, payload) {
-		return axios.post(bookApi.getBookCatalog, {
-			params: payload
+	fetchBookCatalog(_, id) {
+		return axios.get(`${bookApi.getBookCatalog}?id=${id}`).then(res=> {
+			return res.data;
 		});
 	},
 	fetchChapter(_, payload) {
-		return axios.post(bookApi.getChapter, {
-			params: payload
+		return axios.post(bookApi.getChapter, payload).then(res=> {
+			return res;
 		});
 	}
 }
@@ -48,6 +48,11 @@ const actions = {
 const getters = {
 	getBookList(state) {
 		return state.bookList;
+	},
+	getBookById(state, id) {
+		const books = state.bookList;
+		const arr = books.filter(item => item.name === id);
+		return arr[0];
 	}
 }
 

@@ -21,17 +21,14 @@ export default {
   },
   data() {
     return {
-      keyword: "诛仙"
+      keyword: "诛仙",
     };
   },
   methods: {
     ...mapActions(["searchBook"]),
-
-    
-
     handleClick() {
       const keyword = this.keyword;
-      return throttle(() => {this.searchBook(keyword).then(res => {
+      return debounce(() => {this.searchBook(keyword).then(res => {
         console.log(res.data);
       })}, 300);
     }

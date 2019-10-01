@@ -40,11 +40,13 @@ export default {
 @import "../styles/mixins.less";
 
 .header {
+  background: #fff;
   min-width: 600px;
+  padding-top: 25px;
   .line {
     padding: 0 10%;
     // min-width: 600px;
-    margin: 25px auto 6px;
+    margin-bottom:  6px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -82,6 +84,9 @@ export default {
         height: 60px;
         padding: 0 20px;
         text-align: center;
+        a {
+          color: #fff;
+        }
         &:hover {
           background: rgba(63, 145, 29, 0.3);
         }
