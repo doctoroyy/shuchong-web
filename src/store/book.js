@@ -1,6 +1,5 @@
 import { book as bookApi } from '../api/index'
 import axios from 'axios'
-
 const state = {
 	bookList: [],
 	booksInfo: [],
