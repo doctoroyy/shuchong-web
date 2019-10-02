@@ -6,7 +6,7 @@
         <div
           v-for="(item1, index1) in item0"
           :key="index1"
-          @click="handleClick(item1.id)"
+          @click="handleClick(item1.no)"
           class="catalog-name card"
         >{{ item1.name }}</div>
       </div>

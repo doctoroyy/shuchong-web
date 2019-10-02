@@ -39,7 +39,7 @@ export default {
     }
   },
   async mounted() {
-    alert(document.body.clientWidth);
+    // alert(document.body.clientWidth);
     const { id } = this.$route.params;
     const res = await this.fetchBookCatalog(id);
     this.catalogInfo = res.data;  

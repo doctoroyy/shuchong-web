@@ -2,33 +2,35 @@
   <div class="chapter-detail">
     <section class="chapter-container">
       <div class="chapter-control">
-        <div class="text-wrap">
-          <span @click="handleClick(-1)">上一章</span>
+        <div @click="handleClick(-1)" class="text-wrap">
+          <span>上一章</span>
         </div>
         <span class="divider"></span>
-        <div class="text-wrap">
-          <span @click="backBookDetail">目录</span>
+        <div @click="backBookDetail" class="text-wrap">
+          <span>目录</span>
         </div>
         <span class="divider"></span>
-        <div class="text-wrap">
-          <span @click="handleClick(+1)">下一章</span>
+        <div @click="handleClick(+1)" class="text-wrap">
+          <span>下一章</span>
         </div>
       </div>
       <div class="context card">
-        <div class="title"><h1>{{ context.name }}</h1></div>
+        <div class="title">
+          <h1>{{ context.name }}</h1>
+        </div>
         <p v-for="(item, index) in context.context" :key="index">{{item}}</p>
       </div>
       <div class="chapter-control">
-        <div class="text-wrap">
-          <span @click="handleClick(-1)">上一章</span>
+        <div @click="handleClick(-1)" class="text-wrap">
+          <span>上一章</span>
         </div>
         <span class="divider"></span>
-        <div class="text-wrap">
-          <span @click="backBookDetail">目录</span>
+        <div @click="backBookDetail" class="text-wrap">
+          <span>目录</span>
         </div>
         <span class="divider"></span>
-        <div class="text-wrap">
-          <span @click="handleClick(+1)">下一章</span>
+        <div @click="handleClick(+1)" class="text-wrap">
+          <span>下一章</span>
         </div>
       </div>
     </section>
@@ -76,11 +78,11 @@ export default {
     backBookDetail() {
       const { id } = this.$route.params;
       this.$router.push({
-        name: 'detail',
+        name: "detail",
         params: {
           id
         }
-      })
+      });
     },
 
     async handleClick(flag) {
@@ -109,17 +111,17 @@ export default {
     (chapterno = parseInt(chapterno)), (id = parseInt(id));
     const res = await this.fetch(id, chapterno);
     // for (let i = 1; i <= 3; i++) {
-      this.fetch(id, chapterno + 1);
+    this.fetch(id, chapterno + 1);
     // }
     // this.overlay = false;
     this.context = res.data;
   }
 };
 </script>
-<style lang="less" scoped>
+<style lang="less">
 .chapter-detail {
   width: 80%;
-  min-width: 800px;
+  min-width: 900px;
   margin: 40px auto 0 auto;
   .chapter-control {
     display: flex;
@@ -128,11 +130,11 @@ export default {
     justify-content: space-between;
     .text-wrap {
       display: inline-block;
-      height: 80;
+      height: 80px;
       text-align: center;
       line-height: 80px;
       width: 33%;
-      font-size: 1.6em;
+      font-size: 1.6rem;
       user-select: none;
       &:hover {
         background: rgba(0, 0, 0, 0.03);
@@ -147,21 +149,27 @@ export default {
     }
   }
   .context {
-    padding: 60px 10px;
+    padding: 6rem 1rem;
     margin: auto;
-    
+
     .title {
       margin: auto;
       text-align: center;
-      font-size: 1.6em;
-      margin-bottom: 10px;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
     }
     p {
-      padding: 0 20px;
-      line-height: 255%;
-      font-size: 1.2rem;
+      padding: 0 2rem;
+      line-height: 3rem;
+      font-size: 1.4rem;
       text-indent: 2rem;
     }
+    // @media screen and (max-width: 1080px) {
+    //   p {
+    //     font-size: 1.8rem;
+    //     line-height: 4.4rem;
+    //   }
+    // }
   }
 }
 </style>
