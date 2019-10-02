@@ -39,6 +39,7 @@ export default {
     }
   },
   async mounted() {
+    alert(document.body.clientWidth);
     const { id } = this.$route.params;
     const res = await this.fetchBookCatalog(id);
     this.catalogInfo = res.data;  
@@ -59,8 +60,15 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.detail-main {
-  width: 80%;
-  margin: 40px auto 0 auto;
+.book-detail-container {
+    // border: 1px red solid;
+    min-width: 900px;
+    .detail-main {
+    width: 80%;
+    min-width: 800px;
+    margin: 40px auto 0 auto;
+    // border: 1px red solid;
+  }
 }
+
 </style>

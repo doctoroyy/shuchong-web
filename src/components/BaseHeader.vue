@@ -41,7 +41,7 @@ export default {
 
 .header {
   background: #fff;
-  min-width: 600px;
+  min-width: 900px;
   padding-top: 25px;
   .line {
     padding: 0 10%;

@@ -66,6 +66,7 @@ export default {
   min-height: 1000px;
   section {
     width: 80%;
+    min-width: 900px;
     // border: 1px red solid;
     // height: 1000px;
     margin: 40px auto 0 auto;

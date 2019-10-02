@@ -119,6 +119,7 @@ export default {
 <style lang="less" scoped>
 .chapter-detail {
   width: 80%;
+  min-width: 800px;
   margin: 40px auto 0 auto;
   .chapter-control {
     display: flex;
@@ -158,8 +159,8 @@ export default {
     p {
       padding: 0 20px;
       line-height: 255%;
-      font-size: 1.2em;
-      text-indent: 2em;
+      font-size: 1.2rem;
+      text-indent: 2rem;
     }
   }
 }
