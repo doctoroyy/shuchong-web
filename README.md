@@ -5,22 +5,22 @@
 
 <h3>首页</h3>
 <div align=center>
-  <img src="screenshot/index.png" alt="首页">
+  <img src="screenshot/index.jpg" alt="首页">
 </div>
 
 <h3>搜索</h3>
 <div align=center>
-  <img src="screenshot/search.png" alt="搜索">
+  <img src="screenshot/search.jpg" alt="搜索">
 </div>
 
 <h3>目录</h3>
 <div align=center>
-  <img src="screenshot/catalog.png" alt="目录">
+  <img src="screenshot/catalog.jpg" alt="目录">
 </div>
 
 <h3>阅读</h3>
 <div align=center>
-  <img src="screenshot/read.png" alt="阅读">
+  <img src="screenshot/read.jpg" alt="阅读">
 </div>
 
 ## 主要技术
