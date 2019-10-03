@@ -3,14 +3,23 @@
 
 ## 截图
 
+<h3>首页</h3>
 <div align=center>
-  <h3>首页</h3>
   <img src="screenshot/index.png" alt="首页">
-  <h3>搜索</h3>
+</div>
+
+<h3>搜索</h3>
+<div align=center>
   <img src="screenshot/search.png" alt="搜索">
-  <h3>目录</h3>
+</div>
+
+<h3>目录</h3>
+<div align=center>
   <img src="screenshot/catalog.png" alt="目录">
-  <h3>阅读</h3>
+</div>
+
+<h3>阅读</h3>
+<div align=center>
   <img src="screenshot/read.png" alt="阅读">
 </div>
 
