@@ -4,9 +4,13 @@
 ## 截图
 
 <div align=center>
+  <h1>首页</h1>
   <img src="screenshot/index.png" alt="首页">
+  <h1>搜索</h1>
   <img src="screenshot/search.png" alt="搜索">
+  <h1>目录</h1>
   <img src="screenshot/catalog.png" alt="目录">
+  <h1>阅读</h1>
   <img src="screenshot/read.png" alt="阅读">
 </div>
 
@@ -63,7 +67,7 @@ src
        ├─ About.vue 
        ├─ App.vue
        ├─ Chapter.vue 章节详情
-       ├─ Home.vue 主页
+       ├─ SearchResult.vue 搜索结果页
        └─ detail 小说目录详情
               ├─ BaseInfo.vue 
               ├─ Catalog.vue
