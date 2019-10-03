@@ -4,13 +4,13 @@
 ## 截图
 
 <div align=center>
-  <h1>首页</h1>
+  <h3>首页</h3>
   <img src="screenshot/index.png" alt="首页">
-  <h1>搜索</h1>
+  <h3>搜索</h3>
   <img src="screenshot/search.png" alt="搜索">
-  <h1>目录</h1>
+  <h3>目录</h3>
   <img src="screenshot/catalog.png" alt="目录">
-  <h1>阅读</h1>
+  <h3>阅读</h3>
   <img src="screenshot/read.png" alt="阅读">
 </div>
 
