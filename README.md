@@ -10,6 +10,9 @@
 
 <h3>搜索</h3>
 <div align=center>
+  <img src="screenshot/search-pending.jpg" alt="搜索中">
+</div>
+<div align=center>
   <img src="screenshot/search.jpg" alt="搜索">
 </div>
 
