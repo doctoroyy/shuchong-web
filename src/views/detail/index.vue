@@ -2,10 +2,11 @@
   <div class="book-detail-container">
     <base-header />
     <section class="detail-main">
-      <base-info :data="catalogInfo.bookInfo"/>
-      <catalog :data="catalogInfo.chapters"/>
+      <Overlay :show="overlay"/>
+      <base-info :data="getCatalog.bookInfo" />
+      <catalog :data="getCatalog.chapters" />
     </section>
-    <Footer/>
+    <Footer />
   </div>
 </template>
 
@@ -13,8 +14,9 @@
 import BaseHeader from "../../components/BaseHeader";
 import BaseInfo from "./BaseInfo";
 import Catalog from "./Catalog";
-import {mapGetters, mapActions} from 'vuex';
+import { mapGetters, mapActions } from "vuex";
 import Footer from "../../components/BaseFooter";
+import Overlay from "../../components/Overlay";
 
 export default {
   name: "BookDetail",
@@ -24,51 +26,45 @@ export default {
     BaseInfo,
     Catalog,
     Footer,
+    Overlay,
   },
   data() {
     return {
-      catalogInfo: null,
-    };
-  },
-
-  props: {
-    imgSrc: {
-      type: Array,
-      required: true,
-      default: () => []
+      overlay: false,
     }
   },
+
+
   async mounted() {
-    // alert(document.body.clientWidth);
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     const { id } = this.$route.params;
-    const res = await this.fetchBookCatalog(id);
-    this.catalogInfo = res.data;  
+    if (!this.getCatalog || this.getCatalog.bookInfo.id !== id) {
+      this.overlay = true;
+      await this.fetchBookCatalog(id);
+    }
+    this.overlay = false;
   },
 
   methods: {
-    ...mapActions([
-      'fetchBookCatalog',
-    ])
+    ...mapActions(["fetchBookCatalog"])
   },
 
   computed: {
-    getBookInfo() {
-      
-    }
+    ...mapGetters(["getCatalog"])
   }
 };
 </script>
 
 <style lang="less" scoped>
 .book-detail-container {
-    // border: 1px red solid;
-    min-width: 900px;
-    .detail-main {
+  // border: 1px red solid;
+  min-width: 900px;
+  .detail-main {
+    // position: relative;
     width: 80%;
     min-width: 800px;
     margin: 40px auto 0 auto;
-    // border: 1px red solid;
   }
 }
-
 </style>

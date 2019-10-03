@@ -1,38 +1,15 @@
 <template>
   <div class="chapter-detail">
     <section class="chapter-container">
-      <div class="chapter-control">
-        <div @click="handleClick(-1)" class="text-wrap">
-          <span>上一章</span>
-        </div>
-        <span class="divider"></span>
-        <div @click="backBookDetail" class="text-wrap">
-          <span>目录</span>
-        </div>
-        <span class="divider"></span>
-        <div @click="handleClick(+1)" class="text-wrap">
-          <span>下一章</span>
-        </div>
-      </div>
+      <Overlay :show="overlay" />
+      <chapter-control :handleClick="handleClick" />
       <div class="context card">
         <div class="title">
           <h1>{{ context.name }}</h1>
         </div>
         <p v-for="(item, index) in context.context" :key="index">{{item}}</p>
       </div>
-      <div class="chapter-control">
-        <div @click="handleClick(-1)" class="text-wrap">
-          <span>上一章</span>
-        </div>
-        <span class="divider"></span>
-        <div @click="backBookDetail" class="text-wrap">
-          <span>目录</span>
-        </div>
-        <span class="divider"></span>
-        <div @click="handleClick(+1)" class="text-wrap">
-          <span>下一章</span>
-        </div>
-      </div>
+      <chapter-control :handleClick="handleClick" />
     </section>
     <Footer />
   </div>
@@ -41,15 +18,20 @@
 <script>
 import Footer from "../components/BaseFooter";
 import { mapActions } from "vuex";
+import Overlay from "../components/Overlay";
+import ChapterControl from "../components/ChapterControl";
 
 export default {
   name: "Chapter",
   components: {
-    Footer
+    Footer,
+    Overlay,
+    ChapterControl
   },
   data() {
     return {
-      context: null
+      context: null,
+      overlay: false
     };
   },
 
@@ -75,20 +57,11 @@ export default {
         return res;
       }
     },
-    backBookDetail() {
-      const { id } = this.$route.params;
-      this.$router.push({
-        name: "detail",
-        params: {
-          id
-        }
-      });
-    },
 
     async handleClick(flag) {
       let { id, chapterno } = this.$route.params;
       (chapterno = parseInt(chapterno)), (id = parseInt(id));
-      // this.overlay = true;
+      this.overlay = true;
       const res = await this.fetch(id, chapterno + flag);
       if (flag === 1) {
         this.fetch(id, chapterno + 1 + 1);
@@ -106,15 +79,15 @@ export default {
   },
 
   async mounted() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     let { id, chapterno } = this.$route.params;
-    // this.overlay = true;
+    this.overlay = true;
     (chapterno = parseInt(chapterno)), (id = parseInt(id));
     const res = await this.fetch(id, chapterno);
-    // for (let i = 1; i <= 3; i++) {
     this.fetch(id, chapterno + 1);
-    // }
-    // this.overlay = false;
     this.context = res.data;
+    this.overlay = false;
   }
 };
 </script>
@@ -123,35 +96,9 @@ export default {
   width: 80%;
   min-width: 900px;
   margin: 40px auto 0 auto;
-  .chapter-control {
-    display: flex;
-    width: 80%;
-    margin: auto;
-    justify-content: space-between;
-    .text-wrap {
-      display: inline-block;
-      height: 80px;
-      text-align: center;
-      line-height: 80px;
-      width: 33%;
-      font-size: 1.6rem;
-      user-select: none;
-      &:hover {
-        background: rgba(0, 0, 0, 0.03);
-      }
-    }
-    .divider {
-      margin: 24px 0;
-      padding: 0;
-      height: 32px;
-      // line-height: 32px;
-      border-right: 1px solid #d8d8d8;
-    }
-  }
   .context {
     padding: 6rem 1rem;
     margin: auto;
-
     .title {
       margin: auto;
       text-align: center;
@@ -164,12 +111,6 @@ export default {
       font-size: 1.4rem;
       text-indent: 2rem;
     }
-    // @media screen and (max-width: 1080px) {
-    //   p {
-    //     font-size: 1.8rem;
-    //     line-height: 4.4rem;
-    //   }
-    // }
   }
 }
 </style>

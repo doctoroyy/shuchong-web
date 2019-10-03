@@ -3,8 +3,10 @@ import axios from 'axios'
 const state = {
 	bookList: [],
 	booksInfo: [],
-	chapters: [],
+	catalog: null,
 	searchResult: null,
+	chapter: null,
+	chapterNext: null,
 }
 
 const mutations = {
@@ -15,10 +17,13 @@ const mutations = {
 		state.bookInfo = data;
 	},
 	setCatalog(state, { data }) {
-		state.chapters.push(data);
+		state.catalog = data;
 	},
 	setSearchResult(state, { data }) {
 		state.searchResult = data;
+	},
+	setChapter(state, { data }) {
+		state.chapter = data;
 	}
 }
 
@@ -37,13 +42,15 @@ const actions = {
 			return res;
 		});
 	},
-	fetchBookCatalog(_, id) {
+	fetchBookCatalog({ commit }, id) {
 		return axios.get(`${bookApi.getBookCatalog}?id=${id}`).then(res=> {
+			commit('setCatalog', res.data);
 			return res.data;
 		});
 	},
-	fetchChapter(_, payload) {
+	fetchChapter({ commit }, payload) {
 		return axios.post(bookApi.getChapter, payload).then(res=> {
+			commit('setChapter', res);
 			return res;
 		});
 	}
@@ -60,6 +67,12 @@ const getters = {
 	},
 	getSearchResult(state) {
 		return state.searchResult;
+	},
+	getChapter(state) {
+		return state.chapter;
+	},
+	getCatalog(state) {
+		return state.catalog;
 	}
 }
 

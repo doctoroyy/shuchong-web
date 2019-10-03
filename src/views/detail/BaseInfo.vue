@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import BookItem from "../../components/book/Item";
 
 export default {
   name: "BaseInfo",
@@ -63,18 +62,14 @@ export default {
     }
   }
   .book-desc {
-    // width: 800px;
-    // border: 1px red solid;
+    width: 70%;
     border-radius: 4px;
-      // background-color: #ecf5ff;
-      border: 1px solid #d9ecff;
-      // height: 200px;
+    border: 1px solid #d9ecff;
     margin: 40px 20px;
     padding: 10px 10px 20px 10px;
     height: 100%;
     .book-name {
       display: inline-block;
-      // width: 100px;
       height: 40px;
       text-align: center;
       line-height: 40px;
