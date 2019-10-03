@@ -49,7 +49,6 @@ export default {
       const data = this.data;
       let res = [];
       const len = data.length;
-
       for (let i = 0; i < data.length; i += 3) {
         let tmp = [];
         for (let j = i; j < i + 3; j++) {

@@ -4,6 +4,7 @@ const state = {
 	bookList: [],
 	booksInfo: [],
 	chapters: [],
+	searchResult: null,
 }
 
 const mutations = {
@@ -15,6 +16,9 @@ const mutations = {
 	},
 	setCatalog(state, { data }) {
 		state.chapters.push(data);
+	},
+	setSearchResult(state, { data }) {
+		state.searchResult = data;
 	}
 }
 
@@ -25,10 +29,11 @@ const actions = {
 			return res.data;
 		});
 	},
-	searchBook(_, payload) {
+	searchBook({ commit }, payload) {
 		return axios.post(bookApi.searchBook, {
 			keyword: payload
 		}).then(res => {
+			commit('setSearchResult', res);
 			return res;
 		});
 	},
@@ -52,6 +57,9 @@ const getters = {
 		const books = state.bookList;
 		const arr = books.filter(item => item.name === id);
 		return arr[0];
+	},
+	getSearchResult(state) {
+		return state.searchResult;
 	}
 }
 

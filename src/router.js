@@ -30,5 +30,10 @@ export default new Router({
       name: 'book',
       component: () => import('./views/Chapter.vue')
     },
+    {
+      path: '/search',
+      name: 'search',
+      component: () => import('./views/SearchResult.vue'),
+    },
   ]
 })
