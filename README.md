@@ -1,27 +1,29 @@
 # 书虫小说
-基于 `vue` 实现的书虫小说前端界面。
+基于 `Vue` 实现的书虫小说前端。
 
 ## 截图
 
 <div align=center>
-	
+  <img src="screenshot/index.png" alt="首页">
+  <img src="screenshot/search.png" alt="搜索">
+  <img src="screenshot/catalog.png" alt="目录">
+  <img src="screenshot/read.png" alt="阅读">
 </div>
 
 ## 主要技术
 
 - Vue.js
-- vue-cli 脚手架搭建项目
 - vue-router 实现路由切换
+- vuex 尝试使用状态管理
 - axios 进行数据请求
-- flex 弹性布局
 - Less 编写样式
-- localStorage 本地数据存取
+- localStorage 对几乎不会变动的数据做缓存，如小说章节内容，避免重复发起网络请求
 
 ## 实现功能
 
-- 
-- 
-- 
+- 小说阅读
+- 小说搜索
+- 获取站外小说
 
 ## 项目结构
 
