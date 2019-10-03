@@ -1,7 +1,7 @@
 <template>
   <div class="chapter-detail">
+    <Overlay :show="overlay" />
     <section class="chapter-container">
-      <Overlay :show="overlay" />
       <chapter-control :handleClick="handleClick" />
       <div class="context card">
         <div class="title">

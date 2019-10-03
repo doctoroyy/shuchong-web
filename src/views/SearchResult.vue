@@ -2,10 +2,9 @@
   <div class="res-container">
     <base-header />
     <section class="res-wrap">
+      <Overlay :show="overlay" />
       <div class="res-list">
-        <base-info 
-          v-for="(item, index) in getSearchResult" :key="index"
-          :data="item" />
+        <base-info v-for="(item, index) in getSearchResult" :key="index" :data="item" />
       </div>
     </section>
     <base-footer />
@@ -16,6 +15,7 @@
 import BaseHeader from "../components/BaseHeader";
 import BaseFooter from "../components/BaseFooter";
 import BaseInfo from "./detail/BaseInfo";
+import Overlay from "../components/Overlay";
 
 import { mapGetters, mapActions } from "vuex";
 
@@ -24,10 +24,12 @@ export default {
   components: {
     BaseHeader,
     BaseFooter,
-    BaseInfo
+    BaseInfo,
+    Overlay
   },
   data() {
     return {
+      overlay: false,
     };
   },
 
@@ -41,8 +43,10 @@ export default {
   async mounted() {
     const { keyword } = this.$route.query;
     if (!this.getSearchResult) {
+      this.overlay = true;
       await this.searchBook(keyword);
     }
+    this.overlay = false;
   }
 };
 </script>
