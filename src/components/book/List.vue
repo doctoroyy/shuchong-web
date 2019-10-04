@@ -148,14 +148,11 @@ export default {
 .book-list-container {
   background: #fff;
   padding: 20px 20px 30px 20px;
-  // min-height: 616px;
   margin: auto;
   .book__data__list {
-    display: flex;
-    flex-direction: column;
     .book__data__row {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-between ;
       margin-bottom: 20px;
       .book__data_item {
       }

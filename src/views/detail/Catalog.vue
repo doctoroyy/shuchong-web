@@ -32,15 +32,15 @@ export default {
   mounted() {},
 
   methods: {
-    handleClick(chapter_id) {
-      const book_id = this.$route.params.id;
+    handleClick(chapterno) {
+      const { id } = this.$route.params;
       this.$router.push({
-        name: 'book',
+        name: "book",
         params: {
-          id: book_id,
-          chapterno: chapter_id,
+          id,
+          chapterno
         }
-      })
+      });
     }
   },
 
@@ -64,11 +64,13 @@ export default {
 
 <style lang="less" scoped>
 .catalog-container {
-  display: flex;
+  // display: flex;
   .catalog-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    box-sizing: border-box;
+
     width: 100%;
     padding: 4%;
     user-select: none;
@@ -79,13 +81,15 @@ export default {
     .catalog-item {
       // width: 100%;
       display: flex;
-      justify-content: center;
       align-items: center;
       .catalog-name {
         height: 60px;
         line-height: 60px;
         text-align: center;
-        flex: 1;
+        width: 33%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
     }
   }

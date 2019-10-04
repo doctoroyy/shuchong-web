@@ -53,6 +53,11 @@ const actions = {
 			commit('setChapter', res);
 			return res;
 		});
+	},
+	downloadBook(_, path) {
+		return axios.get(`${bookApi.download}?id=${path}`).then(res => {
+			return res;
+		})
 	}
 }
 

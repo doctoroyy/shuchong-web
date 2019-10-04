@@ -60,7 +60,7 @@ export default {
 
     async handleClick(flag) {
       let { id, chapterno } = this.$route.params;
-      (chapterno = parseInt(chapterno)), (id = parseInt(id));
+      (chapterno = parseInt(chapterno));
       this.overlay = true;
       const res = await this.fetch(id, chapterno + flag);
       if (flag === 1) {
@@ -83,7 +83,7 @@ export default {
     document.documentElement.scrollTop = 0;
     let { id, chapterno } = this.$route.params;
     this.overlay = true;
-    (chapterno = parseInt(chapterno)), (id = parseInt(id));
+    (chapterno = parseInt(chapterno));
     const res = await this.fetch(id, chapterno);
     this.fetch(id, chapterno + 1);
     this.context = res.data;

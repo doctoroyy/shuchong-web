@@ -4,7 +4,14 @@
     <section class="res-wrap">
       <Overlay :show="overlay" />
       <div class="res-list">
-        <base-info v-for="(item, index) in getSearchResult" :key="index" :data="item" />
+        <div class="res-item">
+          <base-info
+            v-for="(item, index) in getSearchResult"
+            :key="index"
+            :data="item"
+            @click="handleClick"
+          />
+        </div>
       </div>
     </section>
     <base-footer />
@@ -29,7 +36,7 @@ export default {
   },
   data() {
     return {
-      overlay: false,
+      overlay: false
     };
   },
 
@@ -37,7 +44,21 @@ export default {
     ...mapGetters(["getSearchResult"])
   },
   methods: {
-    ...mapActions(["searchBook"])
+    ...mapActions(["searchBook", "downloadBook"]),
+    handleClick(path) {
+      this.overlay = true;
+      this.downloadBook(path).then(res => {
+        setTimeout(() => {
+          this.overlay = false;
+          this.$router.push({
+            name: "detail",
+            params: {
+              id: path
+            }
+          });
+        }, 2000);
+      });
+    }
   },
 
   async mounted() {

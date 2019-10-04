@@ -1,5 +1,7 @@
 <template>
-  <div class="book-info-container card">
+  <div
+    @click="handleClick"
+    class="book-info-container card">
     <div class="book-cover">
       <img :src="data.imgSrc" :alt="data.author" class="image card" />
     </div>
@@ -40,7 +42,12 @@ export default {
   },
   mounted() {},
 
-  methods: {},
+  methods: {
+    handleClick() {
+      const { biqugePath } = this.data;
+      this.$emit('click', biqugePath);
+    }
+  },
 
   computed: {}
 };
@@ -88,7 +95,8 @@ export default {
       padding: 10px;
       margin-top: -10px;
       overflow: hidden;
-      word-wrap: break-word;
+        // text-overflow: ellipsis;
+        // white-space: nowrap;
     }
     .book-author, .lastest-chapter, .update-time {
       height: 30px;

@@ -27,7 +27,7 @@ export default {
       this.$router.push({
         name: 'detail',
         params: {
-          id:this.data.id,
+          id:this.data.biqugePath,
         }
       })
     }
