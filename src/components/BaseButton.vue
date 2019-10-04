@@ -1,7 +1,7 @@
 <template>
   <div class="btn-wrap">
     <button
-      @click="handleClick"
+      type="submit"
       :class="['iconfont', 'icon-' + icon]">{{ name }}</button>
   </div>
 </template>
@@ -18,16 +18,7 @@ export default {
       type: String,
       default: ""
     },
-    handleClick: {
-      type: Function,
-      default: () => {}
-    }
   },
-  data() {
-    return {
-
-    }
-  }
 };
 </script>
 

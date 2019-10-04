@@ -1,18 +1,20 @@
 <template>
   <div class="bar-wrap">
     <Overlay :show="showTips" />
-    <div class="item">
-      <input v-model.trim="keyword" type="text" name="key" placeholder="请输入内容" />
-    </div>
-    <div class="btn-input-append">
-      <base-button class="search-btn" :icon="'sousuo'" :handleClick="handleClick()" />
-    </div>
+    <form class="search-form" @submit="handleClick($event)">
+      <div class="item">
+        <input v-model.trim="getKeyword" type="text" name="key" placeholder="请输入内容" />
+      </div>
+      <div class="btn-input-append">
+        <base-button class="search-btn" :icon="'sousuo'" />
+      </div>
+    </form>
   </div>
 </template>
 
 <script>
 import BaseButton from "../components/BaseButton";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters, mapMutations } from "vuex";
 import { debounce, throttle } from "../utils";
 import Overlay from "../components/Overlay";
 
@@ -24,27 +26,39 @@ export default {
   },
   data() {
     return {
-      keyword: "诛仙",
       showTips: false
     };
   },
+  computed: {
+    ...mapGetters(["keyword"]),
+    getKeyword: {
+      get() {
+        return this.keyword;
+      },
+
+      set(val) {
+        this.setKeyword(val);
+      }
+    }
+  },
+
   methods: {
     ...mapActions(["searchBook"]),
-    handleClick() {
-      const keyword = this.keyword;
-      return throttle(() => {
-        this.showTips = true;
-        this.searchBook(keyword).then(res => {
-          // console.log(res.data);
-          this.showTips = false;
-          this.$router.push({
-            name: "search",
-            query: {
-              keyword
-            }
-          });
+    ...mapMutations(["setKeyword"]),
+    handleClick(e) {
+      e.preventDefault();
+      const keyword = encodeURI(this.keyword);
+      this.showTips = true;
+      this.searchBook(keyword).then(res => {
+        // console.log(res.data);
+        this.showTips = false;
+        this.$router.push({
+          name: "search",
+          query: {
+            keyword
+          }
         });
-      }, 300);
+      });
     }
   }
 };
@@ -59,11 +73,15 @@ export default {
   display: flex;
   justify-items: center;
   align-items: center;
-  .item {
-    input {
-      .input-style();
+  .search-form {
+    display: flex;
+    .item {
+      input {
+        .input-style();
+      }
     }
   }
+
   .tips {
     position: absolute;
     color: rgba(0, 0, 0, 0.1);

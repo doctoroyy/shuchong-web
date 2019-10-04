@@ -47,7 +47,7 @@ export default {
 
   props: {},
   created() {
-    this.fetchBookList({ page: 1, pageSize: 100 });
+    this.fetchBookList({ page: 1, pageSize: 10 });
   },
 
   methods: {
