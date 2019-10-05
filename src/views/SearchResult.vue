@@ -48,7 +48,7 @@ export default {
     handleClick(path) {
       this.overlay = true;
       this.downloadBook(path).then(res => {
-        setTimeout(() => {
+        // setTimeout(() => {
           this.overlay = false;
           this.$router.push({
             name: "detail",
@@ -56,7 +56,7 @@ export default {
               id: path
             }
           });
-        }, 2000);
+        // }, 1800);
       });
     }
   },
