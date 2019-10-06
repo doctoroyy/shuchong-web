@@ -10,15 +10,17 @@
     </div>
     <nav class="nav">
       <div class="nav-list">
-        <div class="nav-item">
-          <router-link to="/">首页</router-link>
-        </div>
-        <div class="nav-item">
-          <router-link to="/about">关于</router-link>
-        </div>
-        <div class="nav-item">
-          <router-link to="#">个人中心</router-link>
-        </div>
+        <router-link class="link" to="/">
+          <div class="nav-item">首页</div>
+        </router-link>
+
+        <router-link class="link" to="/about">
+          <div class="nav-item">关于</div>
+        </router-link>
+
+        <router-link class="link" to="#">
+          <div class="nav-item">个人中心</div>
+        </router-link>
       </div>
     </nav>
   </header>
@@ -46,7 +48,7 @@ export default {
   .line {
     padding: 0 10%;
     // min-width: 600px;
-    margin-bottom:  6px;
+    margin-bottom: 6px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -78,11 +80,16 @@ export default {
       // align-items: end;
       justify-content: space-between;
       width: 280px;
+      .link {
+        color: #fff;
+      }
       .nav-item {
         user-select: none;
         line-height: 60px;
         height: 60px;
+        box-sizing: border-box;
         padding: 0 20px;
+
         text-align: center;
         a {
           color: #fff;
