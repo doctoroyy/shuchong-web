@@ -54,9 +54,10 @@ export default {
   },
 
   methods: {
-    ...mapActions(["fetchBookList"]),
+    ...mapActions(["fetchBookList", "updatePageInfo"]),
     handleClick(page) {
-      const {  pageSize } = this.getPageInfo;
+      const {  pageSize, pageCount } = this.getPageInfo;
+      this.updatePageInfo({page, pageSize, pageCount});
       this.fetchBookList({ page, pageSize });
     }
   }

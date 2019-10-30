@@ -29,6 +29,11 @@ export default {
     return {
       updateHistory: [
         {
+          commit: "新增分页组件",
+          Author: "xiaoyu <doctor.oyy@gmail.com>",
+          Date: "Wed Oct 30 17:17:39 2019 +0800"
+        },
+        {
           commit: "下载逻辑配合后端改为同步",
           Author: "xiaoyu <doctor.oyy@gmail.com>",
           Date: "Sat Oct 5 14:57:43 2019 +0800"

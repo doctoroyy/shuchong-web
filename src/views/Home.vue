@@ -50,7 +50,8 @@ export default {
   },
   
   created() {
-    this.fetchBookList({ page: 1, pageSize: 10 });
+    const { pageSize, page } = this.getPageInfo;
+    this.fetchBookList({ page, pageSize });
   },
 
   methods: {
@@ -58,7 +59,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["getBookList"])
+    ...mapGetters(["getBookList", "getPageInfo"])
   },
   mounted() {
     // document.body.scrollTop = 0;

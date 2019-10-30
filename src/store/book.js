@@ -76,6 +76,9 @@ const actions = {
 		return axios.get(`${bookApi.download}?id=${path}`).then(res => {
 			return res;
 		})
+	},
+	updatePageInfo({ commit }, payload) {
+		commit('setPageInfo', payload);
 	}
 }
 
