@@ -1,5 +1,6 @@
 import { book as bookApi } from '../api/index'
 import axios from 'axios'
+
 const state = {
 	bookList: [],
 	booksInfo: [],
@@ -29,27 +30,31 @@ const mutations = {
 
 const actions = {
 	fetchBookList({ commit }, payload) {
-		return axios.post(bookApi.getBookList, payload).then((res) => {
+		return axios.get(bookApi.getBookList, {
+			params: payload,
+		}).then((res) => {
 			commit('setBookList', res.data);
 			return res.data;
 		});
 	},
 	searchBook({ commit }, payload) {
-		return axios.post(bookApi.searchBook, {
-			keyword: payload
+		return axios.get(bookApi.searchBook, {
+			params: { keyword: payload }
 		}).then(res => {
 			commit('setSearchResult', res);
 			return res;
 		});
 	},
 	fetchBookCatalog({ commit }, id) {
-		return axios.get(`${bookApi.getBookCatalog}?id=${id}`).then(res=> {
+		return axios.get(`${bookApi.getBookCatalog}?id=${id}`).then(res => {
 			commit('setCatalog', res.data);
 			return res.data;
 		});
 	},
 	fetchChapter({ commit }, payload) {
-		return axios.post(bookApi.getChapter, payload).then(res=> {
+		return axios.get(bookApi.getChapter, {
+			params: payload
+		}).then(res => {
 			commit('setChapter', res);
 			return res;
 		});
