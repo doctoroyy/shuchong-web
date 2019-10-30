@@ -17,7 +17,7 @@
         <book-list :data="getBookList" />
       </div>
     </section>
-    <Footer/>
+    <Footer />
   </div>
 </template>
 
@@ -45,7 +45,10 @@ export default {
     return {};
   },
 
-  props: {},
+  props: {
+
+  },
+  
   created() {
     this.fetchBookList({ page: 1, pageSize: 10 });
   },

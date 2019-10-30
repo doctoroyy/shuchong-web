@@ -8,6 +8,11 @@ const state = {
 	searchResult: null,
 	chapter: null,
 	chapterNext: null,
+	pageInfo: {
+		page: 1,
+		pageSize: 10,
+		pageCount: 1,
+	}
 }
 
 const mutations = {
@@ -25,6 +30,13 @@ const mutations = {
 	},
 	setChapter(state, { data }) {
 		state.chapter = data;
+	},
+	setPageInfo(state, { page, pageCount, pageSize }) {
+		state.pageInfo = {
+			page, 
+			pageCount, 
+			pageSize,
+		}
 	}
 }
 
@@ -34,6 +46,7 @@ const actions = {
 			params: payload,
 		}).then((res) => {
 			commit('setBookList', res.data);
+			commit('setPageInfo', res.data);
 			return res.data;
 		});
 	},
@@ -83,6 +96,9 @@ const getters = {
 	},
 	getCatalog(state) {
 		return state.catalog;
+	},
+	getPageInfo(state) {
+		return state.pageInfo;
 	}
 }
 

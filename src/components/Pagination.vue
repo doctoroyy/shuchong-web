@@ -1,43 +1,101 @@
 <template>
-  <div class="carousel-container">
-    
+  <div class="pagination-container">
+    <ul class="pagination">
+      <li class="pagination-item pagination-prev" :class="{disabled: isFistPage}">
+        <i class="iconfont icon-arrow-left"></i>
+      </li>
+      <li v-for="i in pageCount" 
+        :key="i" class="pagination-item" 
+        :class="{active: isCurrent(i)}"
+        @click="() => handleClick(i)"
+        >
+        <span>{{ i }}</span>
+      </li>
+      <li class="pagination-item pagination-next" :class="{disabled: isLastPage}">
+        <i class="iconfont icon-arrow-right"></i>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 
+import { mapGetters, mapActions } from "vuex";
+
 export default {
-  components: {
+  name: "Pagination",
 
-  },
-  data() {
-    return {
-
-    }
-  },
-  
   props: {
-    imgSrc: {
-      type: Array,
-      required: true,
-      default: () => [],
-    }
-  },
-  mounted() {
+    page: {
+      type: Number
+    },
+    pageCount: {
+      type: Number
+    },
+    handleClick: {
+      type: Function,
 
+    }
   },
 
   methods: {
-
+    isCurrent(index) {
+      return this.page === index;
+    }
   },
 
   computed: {
+    isFistPage() {
+      return this.page === 1;
+    },
 
-  },
-
-}
+    isLastPage() {
+      return this.page === this.pageCount;
+    }
+  }
+};
 </script>
 
 <style lang="less" scoped>
-
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  .pagination {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5;
+    list-style: none;
+    .pagination-item {
+      display: inline-block;
+      min-width: 32px;
+      height: 32px;
+      margin-right: 8px;
+      font-family: Arial;
+      line-height: 30px;
+      text-align: center;
+      vertical-align: middle;
+      list-style: none;
+      background-color: #fff;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      outline: 0;
+      cursor: pointer;
+      user-select: none;
+      &.active {
+        font-weight: 500;
+        background: #fff;
+        color: #1890ff;
+        border-color: #1890ff;
+      }
+      &.disabled, &.disabled:hover {
+        cursor: not-allowed;
+        color: rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}
 </style>
