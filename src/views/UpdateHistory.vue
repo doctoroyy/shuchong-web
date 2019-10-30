@@ -65,7 +65,7 @@ export default {
           Date: "Thu Oct 3 13:36:16 2019 +0800"
         },
         {
-          commit: "抛弃elemetn-ui，原生ui组件编写完成",
+          commit: "抛弃element-ui，原生ui组件编写完成",
           Author: "xiaoyu <doctor.oyy@gmail.com>",
           Date: "Wed Oct 2 02:48:25 2019 +0800"
         },

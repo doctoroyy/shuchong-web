@@ -2,26 +2,25 @@
   <div class="pagination-container">
     <ul class="pagination">
       <li class="pagination-item pagination-prev" :class="{disabled: isFistPage}">
-        <i class="iconfont icon-arrow-left"></i>
+        <i class="iconfont icon-arrow-left" @click="() => handleClick(page - 1)"></i>
       </li>
-      <li v-for="i in pageCount" 
-        :key="i" class="pagination-item" 
+      <li
+        v-for="i in pageCount"
+        :key="i"
+        class="pagination-item"
         :class="{active: isCurrent(i)}"
         @click="() => handleClick(i)"
-        >
+      >
         <span>{{ i }}</span>
       </li>
       <li class="pagination-item pagination-next" :class="{disabled: isLastPage}">
-        <i class="iconfont icon-arrow-right"></i>
+        <i class="iconfont icon-arrow-right" @click="() => handleClick(page + 1)"></i>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-
-import { mapGetters, mapActions } from "vuex";
-
 export default {
   name: "Pagination",
 
@@ -33,8 +32,7 @@ export default {
       type: Number
     },
     handleClick: {
-      type: Function,
-
+      type: Function
     }
   },
 
@@ -58,13 +56,17 @@ export default {
 
 <style lang="less" scoped>
 .pagination-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   justify-content: center;
   .pagination {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    color: rgba(0, 0, 0, 0.7);
+    color: rgba(0, 0, 0, 0.65);
     font-size: 14px;
     font-variant: tabular-nums;
     line-height: 1.5;
@@ -91,9 +93,13 @@ export default {
         color: #1890ff;
         border-color: #1890ff;
       }
-      &.disabled, &.disabled:hover {
+      &.disabled,
+      &.disabled:hover {
+        color: rgba(0, 0, 0, 0.45);
+        background: #f5f5f5;
+        border-color: #d9d9d9;
+        pointer-events: none;
         cursor: not-allowed;
-        color: rgba(0, 0, 0, 0.2);
       }
     }
   }

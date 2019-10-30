@@ -1,5 +1,6 @@
 <template>
   <div class="book-list-container">
+    <Overlay :show="overlay" />
     <div class="book__data__list">
       <div v-for="(item0, index0) in createData" :key="index0" class="book__data__row">
         <book-item
@@ -22,11 +23,20 @@
 import BookItem from "./Item";
 import Pagination from "../Pagination";
 import { mapGetters, mapActions } from "vuex";
+import Overlay from '../../components/Overlay';
 
 export default {
+
+  data() {
+    return {
+      overlay: false,
+    }
+  },
+
   components: {
     BookItem,
-    Pagination
+    Pagination,
+    Overlay,
   },
   name: "BookList",
 
@@ -55,10 +65,12 @@ export default {
 
   methods: {
     ...mapActions(["fetchBookList", "updatePageInfo"]),
-    handleClick(page) {
+    async handleClick(page) {
       const {  pageSize, pageCount } = this.getPageInfo;
       this.updatePageInfo({page, pageSize, pageCount});
-      this.fetchBookList({ page, pageSize });
+      this.overlay = true;
+      await this.fetchBookList({ page, pageSize });
+      this.overlay = false;
     }
   }
 };
@@ -66,16 +78,16 @@ export default {
 
 <style lang="less" scoped>
 .book-list-container {
+  position: relative;
   background: #fff;
   padding: 20px 20px 30px 20px;
   margin: auto;
+  height: 600px;
   .book__data__list {
     .book__data__row {
       display: flex;
       justify-content: space-between;
       margin-bottom: 20px;
-      .book__data_item {
-      }
     }
   }
 }

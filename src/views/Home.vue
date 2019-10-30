@@ -61,10 +61,6 @@ export default {
   computed: {
     ...mapGetters(["getBookList", "getPageInfo"])
   },
-  mounted() {
-    // document.body.scrollTop = 0;
-    // document.documentElement.scrollTop = 0;
-  }
 };
 </script>
 
@@ -75,18 +71,16 @@ export default {
   section {
     width: 80%;
     min-width: 900px;
-    // border: 1px red solid;
-    // height: 1000px;
-    margin: 40px auto 0 auto;
+    margin: 40px auto 20px auto;
+    .book-list-wrap {
+      height: 630px;
+    }
     .books-shelfs {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      // border: 1px red solid;
       .book-tags {
-        // border: 1px red solid;
         flex: 1;
-        // height: 400px;
       }
       .book-imgs {
         flex: 3;

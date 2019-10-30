@@ -4,7 +4,6 @@ import book from './book'
 
 Vue.use(Vuex);
 
-const debug = process.env.NODE_ENV !== 'production'
 
 const state = {
   tags: [

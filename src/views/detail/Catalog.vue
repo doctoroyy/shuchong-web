@@ -64,13 +64,9 @@ export default {
 
 <style lang="less" scoped>
 .catalog-container {
-  // display: flex;
+  min-height: 800px;
   .catalog-list {
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
     box-sizing: border-box;
-
     width: 100%;
     padding: 4%;
     user-select: none;
@@ -79,7 +75,6 @@ export default {
       margin: 10px;
     }
     .catalog-item {
-      // width: 100%;
       display: flex;
       align-items: center;
       .catalog-name {

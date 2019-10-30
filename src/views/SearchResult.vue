@@ -47,7 +47,7 @@ export default {
     ...mapActions(["searchBook", "downloadBook"]),
     handleClick(path) {
       this.overlay = true;
-      this.downloadBook(path).then(res => {
+      this.downloadBook(path).then(() => {
         // setTimeout(() => {
           this.overlay = false;
           this.$router.push({

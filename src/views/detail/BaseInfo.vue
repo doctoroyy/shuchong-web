@@ -57,7 +57,8 @@ export default {
 .book-info-container {
   margin-bottom: 20px;
   display: flex;
-  min-height: 288px;
+  height: 288px;
+  // min-height: 288px;
   // justify-content: space-between;
   .book-cover {
     padding: 20px;
@@ -74,7 +75,7 @@ export default {
     border: 1px solid #d9ecff;
     margin: 40px 20px;
     padding: 10px 10px 20px 10px;
-    height: 100%;
+    // height: 100%;
     .book-name {
       display: inline-block;
       height: 40px;
