@@ -1,8 +1,12 @@
 <template>
   <div class="pagination-container">
     <ul class="pagination">
-      <li class="pagination-item pagination-prev" :class="{disabled: isFistPage}">
-        <i class="iconfont icon-arrow-left" @click="() => handleClick(page - 1)"></i>
+      <li
+        class="pagination-item pagination-prev"
+        :class="{disabled: isFistPage}"
+        @click="() => handleClick(page - 1)"
+      >
+        <i class="iconfont icon-arrow-left" ></i>
       </li>
       <li
         v-for="i in pageCount"
@@ -13,8 +17,12 @@
       >
         <span>{{ i }}</span>
       </li>
-      <li class="pagination-item pagination-next" :class="{disabled: isLastPage}">
-        <i class="iconfont icon-arrow-right" @click="() => handleClick(page + 1)"></i>
+      <li 
+        class="pagination-item pagination-next" 
+        :class="{disabled: isLastPage}"
+        @click="() => handleClick(page + 1)"
+      >
+        <i class="iconfont icon-arrow-right"></i>
       </li>
     </ul>
   </div>

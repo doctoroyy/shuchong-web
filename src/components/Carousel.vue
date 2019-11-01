@@ -109,8 +109,7 @@ export default {
   }
 
   .fade {
-    animation-name: fade;
-    animation-duration: 1.2s;
+    animation: fade 1.2s;
   }
 
   @keyframes fade {

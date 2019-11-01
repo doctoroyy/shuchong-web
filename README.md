@@ -28,18 +28,17 @@
 
 ## 主要技术
 
-- Vue.js
+- vue.js
 - vue-router 实现路由切换
 - vuex 尝试使用状态管理
 - axios 进行数据请求
-- Less 编写样式
+- less 编写样式
 - localStorage 对几乎不会变动的数据做缓存，如小说章节内容，避免重复发起网络请求
 
 ## 实现功能
 
 - 小说阅读
 - 小说搜索
-- 获取站外小说
 
 ## 项目结构
 
@@ -60,7 +59,7 @@ src
 │    ├─ BaseSearchBar.vue 顶部的搜索条组件
 │    ├─ Carousel.vue 轮播图组件
 │    ├─ Divider.vue 分割线组件
-│    ├─ Pagination.vue
+│    ├─ Pagination.vue 分页组件
 │    ├─ TagList.vue
 │    └─ book
 │           ├─ Item.vue 小说信息封装
