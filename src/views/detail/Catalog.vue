@@ -2,13 +2,19 @@
   <div class="catalog-container card">
     <div class="catalog-list card">
       <div class="catalog-title">目录</div>
-      <div v-for="(item0, index0) in createData" :key="index0" class="catalog-item">
+      <div
+        v-for="(item0, index0) in createData" 
+        :key="index0" 
+        class="catalog-item"
+      >
         <div
           v-for="(item1, index1) in item0"
           :key="index1"
           @click="handleClick(item1.no)"
           class="catalog-name card"
-        >{{ item1.name }}</div>
+        >
+          {{ item1.name }}
+        </div>
       </div>
     </div>
   </div>
@@ -18,18 +24,12 @@
 export default {
   name: "Catalog",
 
-  components: {},
-  data() {
-    return {};
-  },
-
   props: {
     data: {
       type: Array,
       default: () => []
     }
   },
-  mounted() {},
 
   methods: {
     handleClick(chapterno) {
