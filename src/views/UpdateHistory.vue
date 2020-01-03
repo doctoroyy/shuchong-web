@@ -29,6 +29,11 @@ export default {
     return {
       updateHistory: [
         {
+          commit: "增加全局过滤动画，优化体验",
+          Author: "xiaoyu <doctor.oyy@gmail.com>",
+          Date: "Fri Jan 3 14:46:10 2020 +0800"
+        },
+        {
           commit: "新增分页组件",
           Author: "xiaoyu <doctor.oyy@gmail.com>",
           Date: "Wed Oct 30 17:17:39 2019 +0800"
