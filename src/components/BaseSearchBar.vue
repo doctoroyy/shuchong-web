@@ -1,6 +1,6 @@
 <template>
   <div class="bar-wrap">
-    <Overlay :show="showTips" />
+    <!-- <Overlay :show="showTips" /> -->
     <form class="search-form" @submit="handleClick($event)">
       <div class="item">
         <input v-model.trim="getKeyword" type="text" name="key" placeholder="请输入内容" />
@@ -16,13 +16,13 @@
 import BaseButton from "../components/BaseButton";
 import { mapActions, mapGetters, mapMutations } from "vuex";
 import { debounce, throttle } from "../utils";
-import Overlay from "../components/Overlay";
+// import Overlay from "../components/Overlay";
 
 export default {
   name: "SearchBar",
   components: {
     BaseButton,
-    Overlay
+    // Overlay
   },
   data() {
     return {
@@ -44,14 +44,19 @@ export default {
 
   methods: {
     ...mapActions(["searchBook"]),
-    ...mapMutations(["setKeyword"]),
+    ...mapMutations(["setKeyword", "setOverlay"]),
     handleClick(e) {
       e.preventDefault();
-      const keyword = encodeURI(this.keyword);
-      this.showTips = true;
-      this.searchBook(keyword).then(res => {
+      // const keyword = encodeURI(this.keyword);
+      const keyword = this.keyword;
+
+      // this.showTips = true;
+      this.setOverlay(true);
+
+      this.searchBook(keyword).then(() => {
         // console.log(res.data);
-        this.showTips = false;
+        // this.showTips = false;
+        this.setOverlay(false);
         this.$router.push({
           name: "search",
           query: {

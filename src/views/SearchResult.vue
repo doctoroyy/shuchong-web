@@ -2,7 +2,7 @@
   <div class="res-container">
     <base-header />
     <section class="res-wrap">
-      <Overlay :show="overlay" />
+      <!-- <Overlay :show="overlay" /> -->
       <div class="res-list">
         <div class="res-item">
           <base-info
@@ -22,40 +22,44 @@
 import BaseHeader from "../components/BaseHeader";
 import BaseFooter from "../components/BaseFooter";
 import BaseInfo from "./detail/BaseInfo";
-import Overlay from "../components/Overlay";
+// import Overlay from "../components/Overlay";
 
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions, mapMutations } from "vuex";
 
 export default {
   name: "SearchResult",
   components: {
     BaseHeader,
     BaseFooter,
-    BaseInfo,
-    Overlay
+    BaseInfo
+    // Overlay
   },
-  data() {
-    return {
-      overlay: false
-    };
-  },
+  // data() {
+  //   return {
+  //     overlay: false
+  //   };
+  // },
 
   computed: {
     ...mapGetters(["getSearchResult"])
   },
   methods: {
+    ...mapMutations(["setOverlay"]),
     ...mapActions(["searchBook", "downloadBook"]),
     handleClick(path) {
-      this.overlay = true;
+      // this.overlay = true;
+      this.setOverlay(true);
+
       this.downloadBook(path).then(() => {
         // setTimeout(() => {
-          this.overlay = false;
-          this.$router.push({
-            name: "detail",
-            params: {
-              id: path
-            }
-          });
+        // this.overlay = false;
+        this.setOverlay(false);
+        this.$router.push({
+          name: "detail",
+          params: {
+            id: path
+          }
+        });
         // }, 1800);
       });
     }
@@ -64,10 +68,12 @@ export default {
   async mounted() {
     const { keyword } = this.$route.query;
     if (!this.getSearchResult) {
-      this.overlay = true;
+      // this.overlay = true;
+      this.setOverlay(true);
       await this.searchBook(keyword);
     }
-    this.overlay = false;
+    // this.overlay = false;
+    this.setOverlay(false);
   }
 };
 </script>

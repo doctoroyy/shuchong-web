@@ -1,0 +1,65 @@
+.spinner {
+
+  margin: 120px auto;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  /* border: 1px solid #f7f7f7; */
+  animation: SpinRotate 1.4s linear infinite;
+
+}
+
+.spinner div {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #dcdfe6;
+  animation: SpinOpacity 1.2s linear infinite;
+}
+
+.spinner .circle1 {
+  left: 0;
+  /* right: 0; */
+  top: 0;
+  animation-delay: .1s;
+}
+
+.spinner .circle2 {
+  left: 0;
+  /* right: 0; */
+  bottom: 0;
+  animation-delay: .2s;
+
+}
+
+.spinner .circle3 {
+  top: 0;
+  /* bottom: 0; */
+  right: 0;
+  animation-delay: .3s;
+
+}
+
+.spinner .circle4 {
+  bottom: 0;
+  /* bottom: 0; */
+  right: 0;
+  animation-delay: .4s;
+
+}
+
+@keyframes SpinRotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes SpinOpacity {
+  0%, 20%, 100%{
+    opacity: 0.3;
+  }
+  80% {
+    opacity: 1.0;
+  }
+}

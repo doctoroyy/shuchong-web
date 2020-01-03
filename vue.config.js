@@ -4,5 +4,9 @@ module.exports = {
       preProcessor: 'less',
       patterns: []
     },
+  },
+  devServer: {
+    disableHostCheck: true
   }
+
 }

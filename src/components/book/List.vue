@@ -1,6 +1,6 @@
 <template>
   <div class="book-list-container">
-    <Overlay :show="overlay" />
+    <!-- <Overlay :show="overlay" /> -->
     <div class="book__data__list">
       <div v-for="(item0, index0) in createData" :key="index0" class="book__data__row">
         <book-item
@@ -11,38 +11,37 @@
         />
       </div>
     </div>
-    <pagination 
-      :page="getPageInfo.page" 
+    <pagination
+      :page="getPageInfo.page"
       :pageCount="getPageInfo.pageCount"
       :handleClick="handleClick"
-     />
+    />
   </div>
 </template>
 
 <script>
 import BookItem from "./Item";
 import Pagination from "../Pagination";
-import { mapGetters, mapActions } from "vuex";
-import Overlay from '../../components/Overlay';
+import { mapGetters, mapActions, mapMutations } from "vuex";
+// import Overlay from "../../components/Overlay";
 
 export default {
-
-  data() {
-    return {
-      overlay: false,
-    }
-  },
+  // data() {
+  //   return {
+  //     // overlay: false
+  //   };
+  // },
 
   components: {
     BookItem,
     Pagination,
-    Overlay,
+    // Overlay
   },
   name: "BookList",
 
   props: {
     data: {
-      type: Array,
+      type: Array
     }
   },
 
@@ -64,13 +63,16 @@ export default {
   },
 
   methods: {
+    ...mapMutations(["setOverlay"]),
     ...mapActions(["fetchBookList", "updatePageInfo"]),
     async handleClick(page) {
-      const {  pageSize, pageCount } = this.getPageInfo;
-      this.updatePageInfo({page, pageSize, pageCount});
-      this.overlay = true;
+      const { pageSize, pageCount } = this.getPageInfo;
+      this.updatePageInfo({ page, pageSize, pageCount });
+      // this.overlay = true;
+      this.setOverlay(true);
       await this.fetchBookList({ page, pageSize });
-      this.overlay = false;
+      // this.overlay = false;
+      this.setOverlay(false);
     }
   }
 };

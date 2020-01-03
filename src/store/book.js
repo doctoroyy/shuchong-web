@@ -12,10 +12,14 @@ const state = {
 		page: 1,
 		pageSize: 10,
 		pageCount: 1,
-	}
+	},
+	overlay: false,
 }
 
 const mutations = {
+	setOverlay(state, value) {
+		state.overlay = value;
+	},
 	setBookList(state, { data }) {
 		state.bookList = data;
 	},
@@ -33,8 +37,8 @@ const mutations = {
 	},
 	setPageInfo(state, { page, pageCount, pageSize }) {
 		state.pageInfo = {
-			page, 
-			pageCount, 
+			page,
+			pageCount,
 			pageSize,
 		}
 	}
@@ -65,9 +69,11 @@ const actions = {
 		});
 	},
 	fetchChapter({ commit }, payload) {
+		// commit('setOverlay', true)
 		return axios.get(bookApi.getChapter, {
 			params: payload
 		}).then(res => {
+			// commit('setOverlay', false)
 			commit('setChapter', res);
 			return res;
 		});
@@ -83,6 +89,9 @@ const actions = {
 }
 
 const getters = {
+	getOverlay(state) {
+		return state.overlay;
+	},
 	getBookList(state) {
 		return state.bookList;
 	},

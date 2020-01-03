@@ -1,6 +1,6 @@
 <template>
   <div class="chapter-detail">
-    <Overlay :show="overlay" />
+    <!-- <Overlay :show="overlay" /> -->
     <section class="chapter-container">
       <chapter-control :handleClick="handleClick" />
       <div class="context card">
@@ -17,21 +17,21 @@
 
 <script>
 import Footer from "../components/BaseFooter";
-import { mapActions } from "vuex";
-import Overlay from "../components/Overlay";
+import { mapActions, mapMutations } from "vuex";
+// import Overlay from "../components/Overlay";
 import ChapterControl from "../components/ChapterControl";
 
 export default {
   name: "Chapter",
   components: {
     Footer,
-    Overlay,
+    // Overlay,
     ChapterControl
   },
   data() {
     return {
       context: null,
-      overlay: false
+      // overlay: false
     };
   },
 
@@ -42,6 +42,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(["setOverlay"]),
     ...mapActions(["fetchChapter"]),
 
     async fetch(id, chapterno) {
@@ -60,13 +61,17 @@ export default {
 
     async handleClick(flag) {
       let { id, chapterno } = this.$route.params;
-      (chapterno = parseInt(chapterno));
-      this.overlay = true;
+      chapterno = parseInt(chapterno);
+      // this.overlay = true;
+      this.setOverlay(true);
+
       const res = await this.fetch(id, chapterno + flag);
       if (flag === 1) {
         this.fetch(id, chapterno + 1 + 1);
       }
-      this.overlay = false;
+      // this.overlay = false;
+      this.setOverlay(false);
+
       this.context = res.data;
       this.$router.push({
         name: "book",
@@ -82,12 +87,15 @@ export default {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     let { id, chapterno } = this.$route.params;
-    this.overlay = true;
-    (chapterno = parseInt(chapterno));
+    // this.overlay = true;
+    this.setOverlay(true);
+
+    chapterno = parseInt(chapterno);
     const res = await this.fetch(id, chapterno);
     this.fetch(id, chapterno + 1);
     this.context = res.data;
-    this.overlay = false;
+    // this.overlay = false;
+    this.setOverlay(false);
   }
 };
 </script>
