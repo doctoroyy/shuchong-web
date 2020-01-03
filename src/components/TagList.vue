@@ -52,10 +52,8 @@ export default {
 <style lang="less" scoped>
 .tag-tab {
   .category {
-    // position: absolute;
     margin: 0 10px 10px 0;
     top: 160px;
-    // text-align: center;
     i {
       font-size: 24px;
       margin-right: 10px;

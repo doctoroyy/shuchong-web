@@ -18,20 +18,17 @@
 <script>
 import Footer from "../components/BaseFooter";
 import { mapActions, mapMutations } from "vuex";
-// import Overlay from "../components/Overlay";
 import ChapterControl from "../components/ChapterControl";
 
 export default {
   name: "Chapter",
   components: {
     Footer,
-    // Overlay,
     ChapterControl
   },
   data() {
     return {
       context: null,
-      // overlay: false
     };
   },
 
@@ -46,7 +43,6 @@ export default {
     ...mapActions(["fetchChapter"]),
 
     async fetch(id, chapterno) {
-      // alert(JSON.stringify(localStorage))
       if (localStorage.getItem(`${id}/${chapterno}`)) {
         return JSON.parse(localStorage.getItem(`${id}/${chapterno}`));
       } else {
@@ -62,16 +58,12 @@ export default {
     async handleClick(flag) {
       let { id, chapterno } = this.$route.params;
       chapterno = parseInt(chapterno);
-      // this.overlay = true;
       this.setOverlay(true);
-
       const res = await this.fetch(id, chapterno + flag);
       if (flag === 1) {
         this.fetch(id, chapterno + 1 + 1);
       }
-      // this.overlay = false;
       this.setOverlay(false);
-
       this.context = res.data;
       this.$router.push({
         name: "book",
@@ -87,14 +79,11 @@ export default {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     let { id, chapterno } = this.$route.params;
-    // this.overlay = true;
     this.setOverlay(true);
-
     chapterno = parseInt(chapterno);
     const res = await this.fetch(id, chapterno);
     this.fetch(id, chapterno + 1);
     this.context = res.data;
-    // this.overlay = false;
     this.setOverlay(false);
   }
 };

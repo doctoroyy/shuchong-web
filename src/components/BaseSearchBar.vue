@@ -16,13 +16,11 @@
 import BaseButton from "../components/BaseButton";
 import { mapActions, mapGetters, mapMutations } from "vuex";
 import { debounce, throttle } from "../utils";
-// import Overlay from "../components/Overlay";
 
 export default {
   name: "SearchBar",
   components: {
     BaseButton,
-    // Overlay
   },
   data() {
     return {
@@ -47,15 +45,9 @@ export default {
     ...mapMutations(["setKeyword", "setOverlay"]),
     handleClick(e) {
       e.preventDefault();
-      // const keyword = encodeURI(this.keyword);
       const keyword = this.keyword;
-
-      // this.showTips = true;
       this.setOverlay(true);
-
       this.searchBook(keyword).then(() => {
-        // console.log(res.data);
-        // this.showTips = false;
         this.setOverlay(false);
         this.$router.push({
           name: "search",
@@ -73,7 +65,6 @@ export default {
 @import "../styles/mixins.less";
 
 .bar-wrap {
-  // margin: auto;
   position: relative;
   display: flex;
   justify-items: center;

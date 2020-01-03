@@ -99,7 +99,6 @@ export default {
 .history-wrap {
   section {
     width: 70%;
-    // min-width: 620px;
     margin: 40px auto;
   }
 }

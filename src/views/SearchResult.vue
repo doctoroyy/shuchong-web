@@ -22,7 +22,6 @@
 import BaseHeader from "../components/BaseHeader";
 import BaseFooter from "../components/BaseFooter";
 import BaseInfo from "./detail/BaseInfo";
-// import Overlay from "../components/Overlay";
 
 import { mapGetters, mapActions, mapMutations } from "vuex";
 
@@ -32,14 +31,7 @@ export default {
     BaseHeader,
     BaseFooter,
     BaseInfo
-    // Overlay
   },
-  // data() {
-  //   return {
-  //     overlay: false
-  //   };
-  // },
-
   computed: {
     ...mapGetters(["getSearchResult"])
   },
@@ -47,12 +39,8 @@ export default {
     ...mapMutations(["setOverlay"]),
     ...mapActions(["searchBook", "downloadBook"]),
     handleClick(path) {
-      // this.overlay = true;
       this.setOverlay(true);
-
       this.downloadBook(path).then(() => {
-        // setTimeout(() => {
-        // this.overlay = false;
         this.setOverlay(false);
         this.$router.push({
           name: "detail",
@@ -60,7 +48,6 @@ export default {
             id: path
           }
         });
-        // }, 1800);
       });
     }
   },
@@ -68,11 +55,9 @@ export default {
   async mounted() {
     const { keyword } = this.$route.query;
     if (!this.getSearchResult) {
-      // this.overlay = true;
       this.setOverlay(true);
       await this.searchBook(keyword);
     }
-    // this.overlay = false;
     this.setOverlay(false);
   }
 };
@@ -80,9 +65,7 @@ export default {
 
 <style lang="less" scoped>
 .res-wrap {
-  // position: relative;
   top: 40px;
-  // border: 1px solid red;
   min-width: 800px;
   width: 80%;
   margin: 20px auto;

@@ -1,19 +1,10 @@
 <template>
   <div class="history-item-wrap">
     <div class="history-tab">
-      <!-- <div class="row">
-        <div class="col">commit:</div>
-        <div class="col"></div>
-      </div> -->
       <div class="row">
         <div class="col"><span>{{new Date(data.Date).toLocaleString()}}</span></div>
         <div class="col"><h3>{{ data.commit }}</h3></div>
-        
       </div>
-      <!-- <div class="row">
-        <div class="col">Author:</div>
-        <div class="col">{{ data.Author}}</div>
-      </div> -->
     </div>
     <divider/>
   </div>
@@ -55,9 +46,6 @@ export default {
       }
     }
   }
-  // min-width: 810px;
   margin: auto;
-  // height: 200px;
-  // border: 1px red solid;
 }
 </style>

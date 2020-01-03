@@ -69,11 +69,9 @@ const actions = {
 		});
 	},
 	fetchChapter({ commit }, payload) {
-		// commit('setOverlay', true)
 		return axios.get(bookApi.getChapter, {
 			params: payload
 		}).then(res => {
-			// commit('setOverlay', false)
 			commit('setChapter', res);
 			return res;
 		});

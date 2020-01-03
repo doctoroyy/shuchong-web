@@ -21,9 +21,3 @@ export default {
   }
 };
 </script>
-
-<style lang="less" scoped>
-.history-list {
-  // border: 1px solid red;
-}
-</style>

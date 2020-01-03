@@ -17,7 +17,6 @@ export default {
 
 <style lang="less" scoped>
   .footer {
-    // background: #4fb53d;
     width: 100%;
     min-width: 900px;
     height: 60px;

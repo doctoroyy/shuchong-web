@@ -61,7 +61,6 @@ export default {
     margin: 24px 0;
     padding: 0;
     height: 32px;
-    // line-height: 32px;
     border-right: 1px solid #d8d8d8;
   }
 }

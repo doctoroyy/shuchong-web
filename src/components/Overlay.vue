@@ -95,14 +95,5 @@ export default {
       opacity: 1;
     }
   }
-  // span {
-  //   user-select: none;
-  //   position: absolute;
-  //   top: 50%;
-  //   left: 50%;
-  //   transform: translate(-50%, -50%);
-  //   color: rgba(255, 255, 255, 1);
-  //   font-size: 20px;
-  // }
 }
 </style>

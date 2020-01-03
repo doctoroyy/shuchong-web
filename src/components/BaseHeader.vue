@@ -47,7 +47,6 @@ export default {
   padding-top: 25px;
   .line {
     padding: 0 10%;
-    // min-width: 600px;
     margin-bottom: 6px;
     display: flex;
     align-items: center;
@@ -72,12 +71,8 @@ export default {
     height: 60px;
     display: flex;
     align-items: center;
-    // justify-content: space-around;
     .nav-list {
-      // min-width: 600px;
-      // margin-left: 40px;
       display: flex;
-      // align-items: end;
       justify-content: space-between;
       width: 280px;
       .link {
@@ -105,7 +100,6 @@ export default {
           left: 100%;
           border-bottom: 2px solid #000;
           content: "";
-          // transition: 0.2s all linear;
         }
       }
     }

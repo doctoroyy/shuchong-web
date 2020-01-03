@@ -85,7 +85,6 @@ export default {
       .book-imgs {
         flex: 3;
         width: 765px;
-        // height: 250px;
         background: #fff;
         padding: 0px 10px;
         margin-top: 30px;

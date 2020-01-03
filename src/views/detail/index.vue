@@ -16,8 +16,6 @@ import BaseInfo from "./BaseInfo";
 import Catalog from "./Catalog";
 import { mapGetters, mapActions, mapMutations } from "vuex";
 import Footer from "../../components/BaseFooter";
-// import Overlay from "../../components/Overlay";
-// import Loading from "../loading/index.vue";
 import { throttle } from "../../utils";
 
 export default {
@@ -28,12 +26,9 @@ export default {
     BaseInfo,
     Catalog,
     Footer
-    // Overlay
   },
   data() {
     return {
-      // overlay: false,
-      // show: false,
       offset: 0
     };
   },
@@ -44,11 +39,8 @@ export default {
     document.addEventListener("scroll", this.scrollWatcher);
     const { id } = this.$route.params;
     if (!this.getCatalog || this.getCatalog.bookInfo.id !== id) {
-      // this.overlay = true;
       this.setOverlay(true);
-
       await this.fetchBookCatalog(id);
-      // this.overlay = false;
       this.setOverlay(false);
     }
   },
@@ -61,7 +53,6 @@ export default {
         let el = document.documentElement;
         let flag = el.scrollHeight - el.scrollTop - 300 <= el.clientHeight;
         if (flag) {
-          // console.log(flag);
           this.offset += 1;
         }
       }, 400)();

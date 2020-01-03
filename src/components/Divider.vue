@@ -23,7 +23,6 @@ export default {
     margin: 24px 0;
     background-color: #dcdfe6;
     position: relative;
-    // color: red;
     .divider__text {
       position: absolute;
       left: 50%;

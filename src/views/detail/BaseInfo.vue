@@ -58,8 +58,6 @@ export default {
   margin-bottom: 20px;
   display: flex;
   height: 288px;
-  // min-height: 288px;
-  // justify-content: space-between;
   .book-cover {
     padding: 20px;
     .image {
@@ -75,7 +73,6 @@ export default {
     border: 1px solid #d9ecff;
     margin: 40px 20px;
     padding: 10px 10px 20px 10px;
-    // height: 100%;
     .book-name {
       display: inline-block;
       height: 40px;
@@ -83,11 +80,8 @@ export default {
       line-height: 40px;
       border-radius: 4px;
       font-size: 20px;
-      // background-color: #ecf5ff;
-      // border: 1px solid #d9ecff;
       color: #333;
       padding: 0 10px;
-      // border-bottom-width: 0;
       margin-bottom: 2px;
     }
     .desc-detail {
@@ -96,8 +90,6 @@ export default {
       padding: 10px;
       margin-top: -10px;
       overflow: hidden;
-        // text-overflow: ellipsis;
-        // white-space: nowrap;
     }
     .book-author, .lastest-chapter, .update-time {
       height: 30px;
