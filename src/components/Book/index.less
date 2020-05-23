@@ -1,0 +1,87 @@
+.book-item-container {
+  margin-bottom: 30px;
+  margin-right: 35px;
+  &:nth-child(5n) {
+    margin-right: 0;
+  }
+  width: 168px;
+  .book-cover {
+    padding: 0;
+    .image {
+      border-bottom: 1px solid #e6e6e6;
+      width: 168px;
+      height: 224px;
+      display: block;
+    }
+  }
+  .book-author {
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.book-list-container {
+  position: relative;
+  background: #fff;
+  padding: 20px 20px 30px 20px;
+  margin: auto;
+  height: 600px;
+  .book__data__list {
+    width: 980px;
+    .book__data__row {
+      display: flex;
+      // justify-content: center;
+      // justify-content: space-between;
+      flex-wrap: wrap;
+      margin: 0 auto 20px auto;
+      // border: 1px solid red;
+      
+    }
+  }
+}
+
+.book-info-container {
+  margin-bottom: 20px;
+  display: flex;
+  height: 288px;
+  .book-cover {
+    padding: 20px;
+    .image {
+      border-bottom: 1px solid #e6e6e6;
+      width: 184px;
+      height: 244px;
+      display: block;
+    }
+  }
+  .book-desc {
+    width: 70%;
+    border-radius: 4px;
+    border: 1px solid #d9ecff;
+    margin: 40px 20px;
+    padding: 10px 10px 20px 10px;
+    .book-name {
+      display: inline-block;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+      border-radius: 4px;
+      font-size: 20px;
+      color: #333;
+      padding: 0 10px;
+      margin-bottom: 2px;
+    }
+    .desc-detail {
+      height: 2em;
+      text-indent: 2em;
+      padding: 10px;
+      margin-top: -10px;
+      overflow: hidden;
+    }
+    .book-author, .lastest-chapter, .update-time {
+      height: 30px;
+      line-height: 30px;
+    }
+  }
+}

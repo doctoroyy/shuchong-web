@@ -1,0 +1,37 @@
+
+
+.catalog-container {
+  min-height: 800px;
+  .catalog-list {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 4%;
+    user-select: none;
+    .catalog-title {
+      font-size: 30px;
+      margin: 10px;
+    }
+    .catalog-item {
+      display: flex;
+      align-items: center;
+      .catalog-name {
+        height: 60px;
+        line-height: 60px;
+        text-align: center;
+        width: 33%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+.book-detail-container {
+  min-width: 900px;
+  .detail-main {
+    width: 80%;
+    min-width: 800px;
+    margin: 40px auto 0 auto;
+  }
+}
